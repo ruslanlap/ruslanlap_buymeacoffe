@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react";
 import CopyButton from "./CopyButton";
 import GlassmorphicCard from "./GlassmorphicCard";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-// Assuming you have the QR code image imported or as a URL
 import qrCodeImage from "../img/monobank-qr-code.jpg";
 
 const DonationOptions = () => {
@@ -33,7 +31,7 @@ const DonationOptions = () => {
 
   return (
     <section
-      id="donate" // Залишаємо id="donate", щоб воно відповідало посиланню в HeroSection
+      id="donate"
       ref={sectionRef}
       className="py-16 md:py-20 px-4 relative"
     >
@@ -113,7 +111,6 @@ const DonationOptions = () => {
           </GlassmorphicCard>
         </div>
 
-        {/* New QR Code Section */}
         <div className="mt-8 text-center reveal reveal-delay-3">
           <h3 className="text-lg font-semibold text-purple-400 mb-4">
             {t('scanToDonate')}
@@ -124,7 +121,7 @@ const DonationOptions = () => {
             className="rounded-lg shadow-lg border border-purple-500/20"
           />
           <p className="text-muted-foreground mt-2">
-            {t('qrCodeDescription')} {/* Optional: Add a description for the QR code */}
+            {t('qrCodeDescription')}
           </p>
         </div>
       </div>

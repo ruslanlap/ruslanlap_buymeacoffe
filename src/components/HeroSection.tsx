@@ -2,9 +2,10 @@ import { ArrowDown } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import React from 'react';
+import logoHero from './src/icons/icon384.png';
 
 interface HeroSectionProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
@@ -48,7 +49,26 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
 
   return (
     <div className="relative">
-      <style>{`
+      {/* Логотип по центру з ефектом світіння */}
+      <div className="flex justify-center mt-14 md:mt-16 lg:mt-18 relative">
+        {/* Зовнішній шар світіння з анімацією */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        
+        {/* Середній шар світіння з анімацією пульсації */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-purple-400/10 rounded-full blur-2xl animate-[ping_3s_ease-in-out_infinite]" />
+        
+        {/* Внутрішній шар світіння, який створює базовий ефект */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-purple-600/15 rounded-full blur-xl" />
+        
+        <img 
+          src={logoHero}
+          alt="logo" 
+          className="h-22 md:h-36 lg:h-40 relative z-10 drop-shadow-[0_0_15px_rgba(192,132,252,0.8)]"
+        />
+      </div>
+      
+      {/* CSS для анімації світіння стрілки */}
+      <style jsx>{`
         @keyframes gladeGlow {
           0% {
             filter: drop-shadow(0 0 2px rgba(168, 85, 247, 0.3));
@@ -68,15 +88,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           animation: gladeGlow 2s ease-in-out infinite;
         }
       `}</style>
-      
-      {/* Логотип по центру */}
-      <div className="flex justify-center pt-8">
-        <img 
-          src="src/icons/icon384.png" 
-          alt="logo" 
-          className="h-22 md:h-36 lg:h-40" // Адаптивна висота
-        />
-      </div>
 
       <section
         ref={sectionRef}
@@ -86,7 +97,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         
         <div className="text-center max-w-3xl mx-auto space-y-4 md:space-y-6 mt-16 md:mt-0">
           <span className="inline-block text-purple-400 font-medium text-xs md:text-sm lg:text-base tracking-wide px-3 py-1 bg-purple-500/10 rounded-full reveal reveal-delay-1">
-            З любов'ю від творця до творців
+            З любов'ю для вас 🚀
           </span>
           
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight reveal reveal-delay-1">
@@ -98,7 +109,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           </p>
           
           <div className="pt-4 md:pt-6 reveal reveal-delay-3">
-            {/* Замінимо посилання на кнопку з функцією прокрутки */}
+            {/* Кнопка для прокрутки до секції донатів */}
             <button 
               onClick={scrollToDonationSection}
               className="inline-flex items-center gap-2 bg-accent hover:bg-accent/80 px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl purple-glow"
@@ -116,6 +127,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
             <ArrowDown className="h-8 w-8 md:h-10 md:w-10 arrow-glow" />
           </button>
         </div>
+        
+        {/* Відображення дочірніх елементів, якщо вони є */}
+        {children}
       </section>
     </div>
   );
