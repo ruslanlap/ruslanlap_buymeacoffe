@@ -38,7 +38,7 @@ const HeroSection = () => {
       {/* Логотип по центру */}
       <div className="flex justify-center mt-14 md:mt-16 lg:mt-18">
         <img 
-          src="src/icons/icon384.png" 
+          src="./src/icons/icon128.png"
           alt="logo" 
           className="h-22 md:h-36 lg:h-40" // Адаптивна висота
         />
