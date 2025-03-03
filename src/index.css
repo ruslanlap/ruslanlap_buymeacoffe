@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 260 25% 96%;
+    --foreground: 260 25% 11%;
+
+    --card: 260 25% 98%;
+    --card-foreground: 260 25% 11%;
+
+    --popover: 260 25% 96%;
+    --popover-foreground: 260 25% 11%;
+
+    --primary: 265 89% 70%;
+    --primary-foreground: 260 25% 98%;
+
+    --secondary: 260 15% 88%;
+    --secondary-foreground: 260 25% 11%;
+
+    --muted: 260 15% 88%;
+    --muted-foreground: 260 15% 40%;
+
+    --accent: 264 59% 60%;
+    --accent-foreground: 260 25% 98%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 260 15% 85%;
+    --input: 260 15% 85%;
+    --ring: 264 59% 65%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark theme */
+    --background: 260 25% 11%;
+    --foreground: 0 0% 98%;
+
+    --card: 260 25% 13%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 260 25% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 265 89% 78%;
+    --primary-foreground: 260 25% 11%;
+
+    --secondary: 260 15% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 260 15% 20%;
+    --muted-foreground: 0 0% 75%;
+
+    --accent: 264 59% 65%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 260 15% 22%;
+    --input: 260 15% 22%;
+    --ring: 264 59% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-accent/30 selection:text-foreground;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased overflow-x-hidden touch-manipulation;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  input, textarea, button, select {
+    @apply focus:outline-none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-white/5 dark:bg-white/5 border border-white/10 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.3)];
+  }
+  
+  .glass-card-hover {
+    @apply transition-all duration-300 hover:bg-white/10 dark:hover:bg-white/10 hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.3)];
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 dark:from-purple-400 dark:via-purple-300 dark:to-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .purple-glow {
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  }
+
+  .mobile-safe-area {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.3s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.5s;
+}
+
+@media (max-width: 768px) {
+  .reveal {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
