@@ -121,6 +121,7 @@ export default {
 				'fade-in-right': 'fade-in-right 0.7s ease-out forwards',
 				'fade-in-left': 'fade-in-left 0.7s ease-out forwards'
 			}
+			
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

@@ -35,12 +35,21 @@ const HeroSection = () => {
 
   return (
     <div className="relative">
-      {/* Логотип по центру */}
-      <div className="flex justify-center mt-14 md:mt-16 lg:mt-18">
+      {/* Логотип по центру з ефектом світіння */}
+      <div className="flex justify-center mt-14 md:mt-16 lg:mt-18 relative">
+        {/* Зовнішній шар світіння з анімацією */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
+        
+        {/* Середній шар світіння з анімацією пульсації */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-purple-400/20 rounded-full blur-2xl animate-[ping_3s_ease-in-out_infinite]" />
+        
+        {/* Внутрішній шар світіння, який створює базовий ефект */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-purple-600/30 rounded-full blur-xl" />
+        
         <img 
-          src="./src/icons/icon128.png"
+          src="./src/icons/icon384.png"
           alt="logo" 
-          className="h-22 md:h-36 lg:h-40" // Адаптивна висота
+          className="h-22 md:h-36 lg:h-40 relative z-10 drop-shadow-[0_0_15px_rgba(192,132,252,0.8)]"
         />
       </div>
 
