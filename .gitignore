@@ -7,6 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+.devcontainer 
+.vscode
+node_modules
+.gitignore
+
+
+
 node_modules
 dist
 dist-ssr
