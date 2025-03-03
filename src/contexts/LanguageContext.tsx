@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 export type Language = 'uk' | 'en';
 
 // Translation type
-export type TranslationKey = 
+export type TranslationKey =
   | 'heroTitle'
   | 'heroSubtitle'
   | 'heroButton'
@@ -38,7 +38,10 @@ export type TranslationKey =
   | 'suggestChangeTitle'
   | 'suggestChangeDesc'
   | 'reportBugButton'
-  | 'suggestChangeButton';
+  | 'suggestChangeButton'
+  | 'reviewsTitle'
+  | 'reviewsDescription'
+  | 'leaveReview';
 
 // Translations object
 const translations: Record<Language, Record<TranslationKey, string>> = {
@@ -47,12 +50,11 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reportBugButton: 'Повідомити про помилку',
     suggestChangeButton: 'Запропонувати зміни',
 
-
     // Hero section
     heroTitle: 'Підтримайте мою роботу!',
     heroSubtitle: 'Ваша підтримка допомагає мені створювати якісний контент та розвивати проєкти. Кожна гривня має значення для майбутніх творчих починань!',
     heroButton: 'Підтримати зараз',
-    
+
     // Why support section
     whySupportTitle: 'Чому варто підтримати',
     whySupportSubtitle: 'Ваша підтримка має безпосередній вплив на розвиток моїх проєктів та створення нового контенту',
@@ -62,7 +64,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reasonContentCreationDesc: 'Кожен внесок допомагає мені приділяти більше часу створенню якісного контенту, корисного для спільноти.',
     reasonCreativitySupport: 'Підтримка творчості',
     reasonCreativitySupportDesc: 'Ваші донати є проявом віри в мою роботу та мотивують мене продовжувати творити й ділитися знаннями.',
-    
+
     // Donation options section
     donationOptionsTitle: 'Підтримати мою роботу',
     donationOptionsSubtitle: 'Оберіть зручний для вас спосіб підтримки. Кожен внесок важливий!',
@@ -72,27 +74,25 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     paypalDesc: 'Міжнародні перекази через PayPal — зручно для підтримки з-за кордону.',
     supportViaMonobank: 'Підтримати через Monobank',
     supportViaPaypal: 'Підтримати через PayPal',
-    
+
     // About section
     aboutTitle: 'Про мене',
     aboutSubtitle: 'Хто я',
     aboutParagraph1: 'Привіт! Я творець контенту та розробник, який присвятив себе створенню цікавих та корисних проєктів для спільноти.',
     aboutParagraph2: 'Мої проєкти народжуються з бажання вирішувати реальні проблеми та ділитися знаннями з іншими. Кожен донат не лише підтримує мою роботу, але й мотивує створювати ще більше якісного контенту.',
     aboutParagraph3: 'Завдяки вашій підтримці я можу зосередитися на розробці нових функцій, створенні навчальних матеріалів та розширенні проєкту. Разом ми будуємо щось особливе!',
-    
+
     // Footer
     footerThankYou: 'Дякую за підтримку!',
     footerDescription: 'Ваші внески допомагають мені продовжувати створювати якісний контент.',
     footerRights: 'Всі права захищено',
     footerCreatedWith: 'Створено з',
-    
+
     // Feedback section
     reportBugTitle: 'Повідомити про помилку',
     reportBugDesc: 'Знайшли помилку або баг? Повідомте нам, щоб ми могли покращити наш сервіс.',
     suggestChangeTitle: 'Запропонувати зміни',
     suggestChangeDesc: 'Маєте ідеї щодо покращення? Поділіться своїми думками та пропозиціями.',
-    reportBugButton: 'Заповнити форму про помилку',
-    suggestChangeButton: 'Заповнити форму з пропозицією',
 
     //Stars
     reviewsTitle: "Відгуки користувачів",
@@ -104,7 +104,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     heroTitle: 'Support My Work!',
     heroSubtitle: 'Your support helps me create quality content and develop projects. Every contribution matters for future creative endeavors!',
     heroButton: 'Support Now',
-    
+
     // Why support section
     whySupportTitle: 'Why Support',
     whySupportSubtitle: 'Your support has a direct impact on the development of my projects and creation of new content',
@@ -114,7 +114,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reasonContentCreationDesc: 'Each contribution helps me dedicate more time to creating quality content that benefits the community.',
     reasonCreativitySupport: 'Supporting Creativity',
     reasonCreativitySupportDesc: 'Your donations are a sign of belief in my work and motivate me to continue creating and sharing knowledge.',
-    
+
     // Donation options section
     donationOptionsTitle: 'Support My Work',
     donationOptionsSubtitle: 'Choose a convenient way to support. Every contribution matters!',
@@ -124,20 +124,20 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     paypalDesc: 'International transfers via PayPal — convenient for support from abroad.',
     supportViaMonobank: 'Support via Monobank',
     supportViaPaypal: 'Support via PayPal',
-    
+
     // About section
     aboutTitle: 'About Me',
     aboutSubtitle: 'Who I Am',
     aboutParagraph1: 'Hello! I am a content creator and developer dedicated to creating interesting and useful projects for the community.',
     aboutParagraph2: 'My projects are born from a desire to solve real problems and share knowledge with others. Each donation not only supports my work but also motivates me to create even more quality content.',
     aboutParagraph3: 'Thanks to your support, I can focus on developing new features, creating educational materials, and expanding the project. Together we are building something special!',
-    
+
     // Footer
     footerThankYou: 'Thank you for your support!',
     footerDescription: 'Your contributions help me continue to create quality content.',
     footerRights: 'All rights reserved',
     footerCreatedWith: 'Created with',
-    
+
     // Feedback section
     reportBugTitle: 'Report a Bug',
     reportBugDesc: 'Found a bug or an error? Let us know so we can improve our service.',
@@ -150,8 +150,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reviewsDescription: "Your feedback helps us improve. Leave a review on Firefox Add-ons!",
     reviewsTitle: "What Users Say",
     leaveReview: "Leave a Review",
-      },
-    };
+  },
+};
 
 // Language context interface
 interface LanguageContextType {
