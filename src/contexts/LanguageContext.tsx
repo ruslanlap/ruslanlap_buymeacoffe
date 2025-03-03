@@ -41,7 +41,9 @@ export type TranslationKey =
   | 'suggestChangeButton'
   | 'reviewsTitle'
   | 'reviewsDescription'
-  | 'leaveReview';
+  | 'leaveReview'
+  | 'scanToDonate'
+  | 'qrCodeDescription';
 
 // Translations object
 const translations: Record<Language, Record<TranslationKey, string>> = {
@@ -76,8 +78,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     supportViaPaypal: 'Підтримати через PayPal',
 
     // About section
-    aboutTitle: 'Про мене',
-    aboutSubtitle: 'Хто я',
+    aboutTitle: 'Декілька слів про те',
+    aboutSubtitle: 'хто я',
     aboutParagraph1: 'Привіт! Я творець контенту та розробник, який присвятив себе створенню цікавих та корисних проєктів для спільноти.',
     aboutParagraph2: 'Мої проєкти народжуються з бажання вирішувати реальні проблеми та ділитися знаннями з іншими. Кожен донат не лише підтримує мою роботу, але й мотивує створювати ще більше якісного контенту.',
     aboutParagraph3: 'Завдяки вашій підтримці я можу зосередитися на розробці нових функцій, створенні навчальних матеріалів та розширенні проєкту. Разом ми будуємо щось особливе!',
@@ -98,6 +100,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reviewsTitle: "Відгуки користувачів",
     reviewsDescription: "Ваші відгуки допомагають нам стати кращими. Залиште відгук на Firefox Add-ons!",
     leaveReview: "Залишити відгук",
+    scanToDonate: "Відскаунити для пожертви",
+    qrCodeDescription: "Також, ви можете відсканувати QR-код, щоб подарувати каву",
   },
   en: {
     // Hero section
@@ -150,6 +154,9 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reviewsDescription: "Your feedback helps us improve. Leave a review on Firefox Add-ons!",
     reviewsTitle: "What Users Say",
     leaveReview: "Leave a Review",
+    scanToDonate: "Scan to Donate",
+    qrCodeDescription: "Also,You can can the QR code to donate a coffee",
+
   },
 };
 

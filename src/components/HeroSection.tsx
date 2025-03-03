@@ -1,8 +1,13 @@
 import { ArrowDown } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import React from 'react';
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  children: React.ReactNode;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
   
@@ -33,23 +38,43 @@ const HeroSection = () => {
     }
   };
 
+  // Додаємо нову функцію для переходу до секції донатів
+  const scrollToDonationSection = () => {
+    const donateSection = document.getElementById("donate");
+    if (donateSection) {
+      donateSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="relative">
-      {/* Логотип по центру з ефектом світіння */}
-      <div className="flex justify-center mt-14 md:mt-16 lg:mt-18 relative">
-        {/* Зовнішній шар світіння з анімацією */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
+      <style>{`
+        @keyframes gladeGlow {
+          0% {
+            filter: drop-shadow(0 0 2px rgba(168, 85, 247, 0.3));
+            transform: translateY(0) scale(1);
+          }
+          50% {
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.7));
+            transform: translateY(10px) scale(1.05);
+          }
+          100% {
+            filter: drop-shadow(0 0 2px rgba(168, 85, 247, 0.3));
+            transform: translateY(0) scale(1);
+          }
+        }
         
-        {/* Середній шар світіння з анімацією пульсації */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-purple-400/20 rounded-full blur-2xl animate-[ping_3s_ease-in-out_infinite]" />
-        
-        {/* Внутрішній шар світіння, який створює базовий ефект */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-purple-600/30 rounded-full blur-xl" />
-        
+        .arrow-glow {
+          animation: gladeGlow 2s ease-in-out infinite;
+        }
+      `}</style>
+      
+      {/* Логотип по центру */}
+      <div className="flex justify-center pt-8">
         <img 
-          src="./src/icons/icon384.png"
+          src="src/icons/icon384.png" 
           alt="logo" 
-          className="h-22 md:h-36 lg:h-40 relative z-10 drop-shadow-[0_0_15px_rgba(192,132,252,0.8)]"
+          className="h-22 md:h-36 lg:h-40" // Адаптивна висота
         />
       </div>
 
@@ -73,21 +98,22 @@ const HeroSection = () => {
           </p>
           
           <div className="pt-4 md:pt-6 reveal reveal-delay-3">
-            <a 
-              href="#donate" 
+            {/* Замінимо посилання на кнопку з функцією прокрутки */}
+            <button 
+              onClick={scrollToDonationSection}
               className="inline-flex items-center gap-2 bg-accent hover:bg-accent/80 px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl purple-glow"
             >
               {t('heroButton')}
-            </a>
+            </button>
           </div>
 
-          {/* Красива стрілка під кнопкою */}
+          {/* Красива стрілка під кнопкою з ефектом світіння */}
           <button 
             onClick={scrollToNextSection}
-            className="mt-8 animate-bounce text-purple-400 hover:text-purple-500 transition-colors duration-1000"
+            className="mt-8 text-purple-400 hover:text-purple-500 transition-colors duration-300 relative"
             aria-label="Прокрутити вниз"
           >
-            <ArrowDown className="h-8 w-8 md:h-10 md:w-10" />
+            <ArrowDown className="h-8 w-8 md:h-10 md:w-10 arrow-glow" />
           </button>
         </div>
       </section>
