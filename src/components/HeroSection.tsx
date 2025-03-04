@@ -66,56 +66,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
       </div>
 
       <style>{`
+        /* Optional additional keyframes for other elements */
         @keyframes arrowPulse {
           0%, 100% {
-            opacity: 0.7;
+            opacity: 0.8;
             transform: scale(1);
-            filter: drop-shadow(0 0 3px rgba(168, 85, 247, 0.4));
+            filter: drop-shadow(0 0 3px rgba(168,85,247,0.4));
           }
           50% {
             opacity: 1;
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8));
-          }
-        }
-
-        @keyframes arrowBounce {
-          0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
-          }
-          40% {
-            transform: translateY(12px);
-          }
-          60% {
-            transform: translateY(5px);
-          }
-        }
-
-        @keyframes arrowFloat {
-          0%, 100% {
-            transform: translateY(0) scale(1);
-          }
-          50% {
-            transform: translateY(-10px) scale(1.1);
-          }
-        }
-
-        .pulsing-arrow {
-          animation: arrowPulse 2s ease-in-out infinite;
-          color: #a78bfa;
-        }
-
-        .arrow-bounce {
-          animation: arrowBounce 2s ease infinite;
-        }
-
-        .arrow-float {
-          animation: arrowFloat 3s ease-in-out infinite;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .pulsing-arrow, .arrow-bounce, .arrow-float {
-            animation: none;
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px rgba(168,85,247,0.5));
           }
         }
       `}</style>
@@ -155,7 +116,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
               className="text-purple-400 hover:text-purple-500 transition-colors duration-300 relative touch-target"
               aria-label={t("scrollDown") || "Scroll down"}
             >
-              <ArrowDown className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 animate-bounce" />
+              <ArrowDown className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 animate-professionalArrow" />
             </button>
           </div>
         </div>
@@ -164,30 +125,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
       </section>
 
       <style>{`
-        @keyframes pulse-glow {
+        @keyframes professionalArrow {
           0% {
-            filter: drop-shadow(0 0 2px rgba(168, 85, 247, 0.3));
+            transform: translateY(0) scale(1);
+            opacity: 0.8;
+            filter: drop-shadow(0 0 3px rgba(168,85,247,0.4));
           }
           50% {
-            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.7));
+            transform: translateY(-8px) scale(1.05);
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(168,85,247,0.5));
           }
           100% {
-            filter: drop-shadow(0 0 2px rgba(168, 85, 247, 0.3));
+            transform: translateY(0) scale(1);
+            opacity: 0.8;
+            filter: drop-shadow(0 0 3px rgba(168,85,247,0.4));
           }
         }
-
-        :global(.animate-bounce) {
-          animation: bounce 1s infinite;
-          animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes bounce {
-          0%, 100% {
-            transform: translateY(-25%);
-          }
-          50% {
-            transform: translateY(0);
-          }
+        .animate-professionalArrow {
+          animation: professionalArrow 2.5s ease-in-out infinite;
         }
       `}</style>
     </div>
