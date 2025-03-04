@@ -22,8 +22,16 @@ const Footer = () => {
           </p>
           
           <div className="flex items-center gap-1 text-sm order-1 md:order-2">
-            {t('footerCreatedWith')} <Heart className="h-4 w-4 text-purple-400 mx-1 animate-pulse" /> за підтримки спільноти
-          </div>
+  {t('footerCreatedWith')} <Heart className="h-4 w-4 text-purple-400 mx-1 animate-pulse" /> 
+  <a 
+    href="https://github.com/ruslanlap" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="text-purple-500 hover:text-purple-600 transition-colors underline underline-offset-2 font-medium"
+  >
+    {t('footerBy')}
+  </a>
+</div>
         </div>
       </div>
     </footer>

@@ -9,8 +9,8 @@ const FeedbackSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
   
-  const bugFormUrl = "https://forms.google.com/"; // Replace with your actual Google Form URL
-  const suggestionFormUrl = "https://forms.google.com/"; // Replace with your actual Google Form URL
+  const bugFormUrl = "https://forms.gle/TYdupLT2yAHLWg4k7"; // Replace with your actual Google Form URL
+  const suggestionFormUrl = "https://forms.gle/TYdupLT2yAHLWg4k7"; // Replace with your actual Google Form URL
   
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-// Define available languages
+// Визначення доступних мов
 export type Language = 'uk' | 'en';
 
-// Translation type
+// Ключі перекладів
 export type TranslationKey =
   | 'heroTitle'
   | 'heroSubtitle'
@@ -43,138 +43,180 @@ export type TranslationKey =
   | 'reviewsDescription'
   | 'leaveReview'
   | 'scanToDonate'
-  | 'qrCodeDescription';
+  | 'qrCodeDescription'
+  | 'footerBy'
+  | 'withLove';  // Виправлено: прибрано зайвий крапку з комою та додано вертикальну риску
 
-// Translations object
+// Об'єкт з перекладами
 const translations: Record<Language, Record<TranslationKey, string>> = {
   uk: {
-    //bug report & suggest change
-    reportBugButton: 'Повідомити про помилку',
-    suggestChangeButton: 'Запропонувати зміни',
+    // Кнопки повідомлення про помилку та пропозиції змін
+    reportBugButton: 'Знайшли помилку? Розкажіть нам',
+    suggestChangeButton: 'Маєте ідею? Поділіться нею',
+    footerBy: 'by ruslanlap',
 
-    // Hero section
+    withLove: 'З любов\'ю для вас 💜',
+    
+    // Секція "Герой"
     heroTitle: 'Підтримайте мою роботу!',
-    heroSubtitle: 'Ваша підтримка допомагає мені створювати якісний контент та розвивати проєкти. Кожна гривня має значення для майбутніх творчих починань!',
-    heroButton: 'Підтримати зараз',
+    heroSubtitle:
+      'Ваш внесок живить інновації та дозволяє втілювати найсміливіші ідеї в життя. Кожна гривня — це велика підтрика для створення нових проєктів!',
+    heroButton: 'Долучитися зараз',
 
-    // Why support section
-    whySupportTitle: 'Чому варто підтримати',
-    whySupportSubtitle: 'Ваша підтримка має безпосередній вплив на розвиток моїх проєктів та створення нового контенту',
-    reasonProjectDevelopment: 'Розвиток проєкту',
-    reasonProjectDevelopmentDesc: 'Ваша підтримка допомагає масштабувати проєкт, впроваджувати нові ідеї та розширювати аудиторію.',
-    reasonContentCreation: 'Створення контенту',
-    reasonContentCreationDesc: 'Кожен внесок допомагає мені приділяти більше часу створенню якісного контенту, корисного для спільноти.',
-    reasonCreativitySupport: 'Підтримка творчості',
-    reasonCreativitySupportDesc: 'Ваші донати є проявом віри в мою роботу та мотивують мене продовжувати творити й ділитися знаннями.',
+    // Секція "Чому варто підтримати"
+    whySupportTitle: 'Що дає ваша підтримка',
+    whySupportSubtitle:
+      'Ми перетворюємо ваш внесок на позитивні зміни та можливості для неймовірних проєктів.',
+    reasonProjectDevelopment: 'Інновації та масштабування',
+    reasonProjectDevelopmentDesc:
+      'З вашою допомогою ми експериментуємо з новими технологіями, впроваджуємо сміливі ідеї та розширюємо межі можливого.',
+    reasonContentCreation: 'Натхнення для творчості',
+    reasonContentCreationDesc:
+      'Ваші донати звільняють час для створення унікального контенту, який надихає, інформує та відкриває нові горизонти.',
+    reasonCreativitySupport: 'Енергія для змін',
+    reasonCreativitySupportDesc:
+      'Ваша віра в проєкт надихає щодня долати нові вершини та ділитися знаннями, які змінюють світогляд.',
 
-    // Donation options section
-    donationOptionsTitle: 'Підтримати мою роботу',
-    donationOptionsSubtitle: 'Оберіть зручний для вас спосіб підтримки. Кожен внесок важливий!',
-    monobankTitle: 'Monobank',
-    monobankDesc: 'Підтримайте через зручну Monobank банку, кошти надійдуть миттєво.',
-    paypalTitle: 'PayPal',
-    paypalDesc: 'Міжнародні перекази через PayPal — зручно для підтримки з-за кордону.',
-    supportViaMonobank: 'Підтримати через Monobank',
-    supportViaPaypal: 'Підтримати через PayPal',
+    // Секція "Підтримка роботи"
+    donationOptionsTitle: 'Як ви можете допомогти',
+    donationOptionsSubtitle:
+      'Обирайте свій шлях підтримки – від блискавичного переказу до міжнародної допомоги!',
+    monobankTitle: 'Блискавичний Monobank',
+    monobankDesc:
+      'Швидкий та інтуїтивний шлях підтримати проєкт – мінімум кліків, максимум користі.',
+    paypalTitle: 'Глобальний PayPal',
+    paypalDesc:
+      'Ідеальне рішення для міжнародної спільноти – без кордонів, комісій та затримок.',
+    supportViaMonobank: 'Підтримати через Mono',
+    supportViaPaypal: 'Доєднатися через PayPal',
 
-    // About section
-    aboutTitle: 'Декілька слів про те',
-    aboutSubtitle: 'хто я',
-    aboutParagraph1: 'Привіт! Я творець контенту та розробник, який присвятив себе створенню цікавих та корисних проєктів для спільноти.',
-    aboutParagraph2: 'Мої проєкти народжуються з бажання вирішувати реальні проблеми та ділитися знаннями з іншими. Кожен донат не лише підтримує мою роботу, але й мотивує створювати ще більше якісного контенту.',
-    aboutParagraph3: 'Завдяки вашій підтримці я можу зосередитися на розробці нових функцій, створенні навчальних матеріалів та розширенні проєкту. Разом ми будуємо щось особливе!',
+    // Секція "Про мене"
+    aboutTitle: 'Привіт, мене звати Руслан,',
+    aboutSubtitle: 'ось мій шлях і філософія',
+    aboutParagraph1: 'Я поєдную розробку з мистецтвом творення, щоб створювати проєкти, які не лише розважають, але й вирішують реальні виклики.',
+    aboutParagraph2: 'Моя місія — трансформувати ідеї в живі проєкти, що служать спільноті. Кожен внесок розпалює полум\'я творчості та відкриває нові можливості.',
+    aboutParagraph3: 'З вашою підтримкою я можу фокусуватися на найголовнішому: інноваціях, якості та спільноті. Разом ми не просто створюємо продукт — ми формуємо культуру!',
+      
+    footerThankYou: 'Вдячний за вашу підтримку!',
+    footerDescription:
+      'Кожен ваш внесок — це для мене мотивація розвивати проєкти і вкладати час у розробу нових продуктів',
+    footerRights: 'Захищено авторським правом',
+    footerCreatedWith: 'Зроблено з натхненням',
 
-    // Footer
-    footerThankYou: 'Дякую за підтримку!',
-    footerDescription: 'Ваші внески допомагають мені продовжувати створювати якісний контент.',
-    footerRights: 'Всі права захищено',
-    footerCreatedWith: 'Створено з',
+    // Секція зворотного зв'язку
+    reportBugTitle: 'Помітили недолік?',
+    reportBugDesc:
+      'Ваша уважність допомагає нам удосконалюватись — розкажіть про технічні проблеми, з якими ви зіткнулись.',
+    suggestChangeTitle: 'Бачите потенціал?',
+    suggestChangeDesc:
+      'Ваші свіжі ідеї та креативні пропозиції — безцінний ресурс для розвитку проєкту!',
 
-    // Feedback section
-    reportBugTitle: 'Повідомити про помилку',
-    reportBugDesc: 'Знайшли помилку або баг? Повідомте нам, щоб ми могли покращити наш сервіс.',
-    suggestChangeTitle: 'Запропонувати зміни',
-    suggestChangeDesc: 'Маєте ідеї щодо покращення? Поділіться своїми думками та пропозиціями.',
-
-    //Stars
-    reviewsTitle: "Відгуки користувачів",
-    reviewsDescription: "Ваші відгуки допомагають нам стати кращими. Залиште відгук на Firefox Add-ons!",
-    leaveReview: "Залишити відгук",
-    scanToDonate: "Відскаунити для пожертви",
-    qrCodeDescription: "Також, ви можете відсканувати QR-код, щоб подарувати каву",
+    // Відгуки
+    reviewsTitle: 'Ваша оцінка та відгук важливі для мене',
+    reviewsDescription:
+      'Кожен відгук — це компас, що направляє наш розвиток у правильному напрямку!',
+    leaveReview: 'Поділитися враженнями',
+    scanToDonate: 'Скануйте для підтримки',
+    qrCodeDescription:
+      'Один QR-код відкриває шлях до підтримки проєкту — це просто як випити кави!',
   },
   en: {
-    // Hero section
-    heroTitle: 'Support My Work!',
-    heroSubtitle: 'Your support helps me create quality content and develop projects. Every contribution matters for future creative endeavors!',
-    heroButton: 'Support Now',
+    // Секція "Hero"
+    heroTitle: 'Fuel the Innovation Journey!',
+    heroSubtitle:
+      'Your contribution ignites creativity and transforms bold ideas into reality. Every donation catalyzes revolutionary projects!',
+    heroButton: 'Join the Movement',
 
-    // Why support section
-    whySupportTitle: 'Why Support',
-    whySupportSubtitle: 'Your support has a direct impact on the development of my projects and creation of new content',
-    reasonProjectDevelopment: 'Project Development',
-    reasonProjectDevelopmentDesc: 'Your support helps to scale the project, implement new ideas, and expand the audience.',
-    reasonContentCreation: 'Content Creation',
-    reasonContentCreationDesc: 'Each contribution helps me dedicate more time to creating quality content that benefits the community.',
-    reasonCreativitySupport: 'Supporting Creativity',
-    reasonCreativitySupportDesc: 'Your donations are a sign of belief in my work and motivate me to continue creating and sharing knowledge.',
+    withLove: 'With love for you 💜',
 
-    // Donation options section
-    donationOptionsTitle: 'Support My Work',
-    donationOptionsSubtitle: 'Choose a convenient way to support. Every contribution matters!',
-    monobankTitle: 'Monobank',
-    monobankDesc: 'Support through convenient Monobank, funds will arrive instantly.',
-    paypalTitle: 'PayPal',
-    paypalDesc: 'International transfers via PayPal — convenient for support from abroad.',
-    supportViaMonobank: 'Support via Monobank',
-    supportViaPaypal: 'Support via PayPal',
+    // Секція "Why Support"
+    whySupportTitle: 'The Impact of Your Support',
+    whySupportSubtitle:
+      'Watch how your generosity transforms into tangible innovations and groundbreaking content.',
+    reasonProjectDevelopment: 'Boundless Growth',
+    reasonProjectDevelopmentDesc:
+      'Your backing enables experimentation with cutting-edge technologies and implementation of ambitious visions that redefine possibilities.',
+    reasonContentCreation: 'Creative Freedom',
+    reasonContentCreationDesc:
+      'Each contribution liberates time for crafting exceptional content that educates, entertains, and expands horizons.',
+    reasonCreativitySupport: 'Momentum for Innovation',
+    reasonCreativitySupportDesc:
+      'Your trust fuels our passion to break barriers, explore uncharted territories, and share transformative knowledge.',
 
-    // About section
-    aboutTitle: 'About Me',
-    aboutSubtitle: 'Who I Am',
-    aboutParagraph1: 'Hello! I am a content creator and developer dedicated to creating interesting and useful projects for the community.',
-    aboutParagraph2: 'My projects are born from a desire to solve real problems and share knowledge with others. Each donation not only supports my work but also motivates me to create even more quality content.',
-    aboutParagraph3: 'Thanks to your support, I can focus on developing new features, creating educational materials, and expanding the project. Together we are building something special!',
+    // Секція "Support My Work"
+    donationOptionsTitle: 'Pathways to Partnership',
+    donationOptionsSubtitle:
+      'Choose your preferred method to join our mission – from lightning-fast transfers to global support!',
+    monobankTitle: 'Swift Monobank',
+    monobankDesc:
+      'Experience the seamless way to contribute – minimal clicks, maximum impact on our shared vision.',
+    paypalTitle: 'Borderless PayPal',
+    paypalDesc:
+      'Perfect for our international community – support without boundaries, fees, or delays.',
+    supportViaMonobank: 'Contribute via Mono',
+    supportViaPaypal: 'Connect through PayPal',
 
+    // Секція "About Me"
+    aboutTitle: 'The Creator\'s Journey',
+    aboutSubtitle: 'Vision and Philosophy',
+    aboutParagraph1:
+      'I blend technical expertise with creative artistry to craft projects that not only entertain but address real-world challenges.',
+    aboutParagraph2:
+      'My mission is transforming concepts into vibrant projects that serve communities. Each contribution ignites the creative flame and unlocks new possibilities.',
+    aboutParagraph3:
+      'Your support allows me to concentrate on what truly matters: innovation, quality, and community building. Together, we\'re not just creating products – we\'re shaping culture!',
+
+    // Футер
+    footerThankYou: 'Eternally grateful for your support!',
+    footerDescription:
+      'Your contributions power the engine of innovation and fuel our commitment to excellence.',
+    footerRights: 'All rights protected',
+    footerCreatedWith: 'Crafted with inspiration',
+
+    // Секція зворотного зв'язку
+    reportBugTitle: 'Spotted an Issue?',
+    reportBugDesc:
+      'Your keen eye helps us evolve – tell us about technical glitches you\'ve encountered along the way.',
+    suggestChangeTitle: 'Envision Improvements?',
+    suggestChangeDesc:
+      'Your fresh perspectives and innovative suggestions are invaluable resources for our growth!',
+    reportBugButton: 'Highlight a Bug',
+    suggestChangeButton: 'Share Your Vision',
+
+    // Відгуки
+    reviewsTitle: 'Community Voices',
+    reviewsDescription:
+      'Every review guides our journey like a compass pointing toward excellence!',
+    leaveReview: 'Share Your Experience',
+    scanToDonate: 'Scan to Empower',
+    qrCodeDescription:
+      'One QR code opens the gateway to supporting our vision – as simple as enjoying your coffee!',
     // Footer
-    footerThankYou: 'Thank you for your support!',
-    footerDescription: 'Your contributions help me continue to create quality content.',
-    footerRights: 'All rights reserved',
-    footerCreatedWith: 'Created with',
-
-    // Feedback section
-    reportBugTitle: 'Report a Bug',
-    reportBugDesc: 'Found a bug or an error? Let us know so we can improve our service.',
-    suggestChangeTitle: 'Suggest Changes',
-    suggestChangeDesc: 'Have ideas for improvements? Share your thoughts and suggestions with us.',
-    reportBugButton: 'Fill out bug report form',
-    suggestChangeButton: 'Fill out suggestion form',
-
-    //Stars
-    reviewsDescription: "Your feedback helps us improve. Leave a review on Firefox Add-ons!",
-    reviewsTitle: "What Users Say",
-    leaveReview: "Leave a Review",
-    scanToDonate: "Scan to Donate",
-    qrCodeDescription: "Also,You can can the QR code to donate a coffee",
-
+    footerBy: 'by ruslanlap',
   },
 };
 
-// Language context interface
+// Інтерфейс мовного контексту
 interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
   t: (key: TranslationKey) => string;
 }
 
-// Create the context
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+// Створення контексту
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
-// Provider component
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+// Компонент-провайдер для мовного контексту
+export const LanguageProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [language, setLanguage] = useState<Language>('uk');
 
-  // Translation function
+  // Функція для отримання перекладу за ключем
   const t = (key: TranslationKey): string => {
     return translations[language][key];
   };
@@ -186,10 +228,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Custom hook to use the language context
+// Кастомний хук для використання мовного контексту
 export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;

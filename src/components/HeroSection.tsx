@@ -2,7 +2,7 @@ import { ArrowDown } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import React from 'react';
-import logoHero from './src/icons/icon384.png';
+import logoHero from '../img/icon384.png';
 
 interface HeroSectionProps {
   children?: React.ReactNode;
@@ -24,7 +24,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
       { threshold: 0.1 }
     );
 
-    const reveals = sectionRef.current?.querySelectorAll(".reveal");
+    const reveals = sectionRef.current?.querySelectorAll("reveal");
     reveals?.forEach((reveal) => observer.observe(reveal));
 
     return () => {
@@ -68,7 +68,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
       </div>
       
       {/* CSS для анімації світіння стрілки */}
-      <style jsx>{`
+      <style>{`
         @keyframes gladeGlow {
           0% {
             filter: drop-shadow(0 0 2px rgba(168, 85, 247, 0.3));
@@ -97,7 +97,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         
         <div className="text-center max-w-3xl mx-auto space-y-4 md:space-y-6 mt-16 md:mt-0">
           <span className="inline-block text-purple-400 font-medium text-xs md:text-sm lg:text-base tracking-wide px-3 py-1 bg-purple-500/10 rounded-full reveal reveal-delay-1">
-            З любов'ю для вас 🚀
+            {t('withLove')}
           </span>
           
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight reveal reveal-delay-1">
