@@ -1,4 +1,5 @@
 
+// WhySupportSection.tsx - Optimized
 import { Heart, LightbulbIcon, Rocket } from "lucide-react";
 import { useEffect, useRef } from "react";
 import GlassmorphicCard from "./GlassmorphicCard";
@@ -16,8 +17,8 @@ const SupportReason = ({ icon, title, description, delayClass }: SupportReasonPr
     <GlassmorphicCard className={`h-full reveal ${delayClass}`}>
       <div className="flex flex-col items-center text-center space-y-4">
         <div className="p-3 bg-purple-500/20 rounded-full text-purple-400">{icon}</div>
-        <h3 className="text-xl font-semibold">{title}</h3>
-        <p className="text-muted-foreground">{description}</p>
+        <h3 className="text-h3">{title}</h3>
+        <p className="text-body text-muted-foreground line-clamp-3 sm:line-clamp-none">{description}</p>
       </div>
     </GlassmorphicCard>
   );
@@ -51,17 +52,17 @@ const WhySupportSection = () => {
     <section
       id="why-support"
       ref={sectionRef}
-      className="py-20 px-4"
+      className="py-16 sm:py-20 px-4"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="inline-block text-purple-400 font-medium tracking-wide px-3 py-1 bg-purple-500/10 rounded-full mb-4 reveal">
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="inline-block text-purple-400 font-medium tracking-wide px-3 py-1 bg-purple-500/10 rounded-full mb-4 reveal text-overline">
             {t('whySupportTitle')}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 reveal">
+          <h2 className="text-h1 mb-4 sm:mb-6 reveal">
            <span className="text-gradient">{t('whySupportTitle')}</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto reveal">
+          <p className="text-body text-muted-foreground max-w-2xl mx-auto reveal text-readable">
             {t('whySupportSubtitle')}
           </p>
         </div>
