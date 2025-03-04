@@ -24,7 +24,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
       { threshold: 0.1 }
     );
 
-    const reveals = sectionRef.current?.querySelectorAll("reveal");
+    const reveals = sectionRef.current?.querySelectorAll(".reveal");
     reveals?.forEach((reveal) => observer.observe(reveal));
 
     return () => {
@@ -39,7 +39,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
     }
   };
 
-  // Додаємо нову функцію для переходу до секції донатів
   const scrollToDonationSection = () => {
     const donateSection = document.getElementById("donate");
     if (donateSection) {
@@ -49,8 +48,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
 
   return (
     <div className="relative">
-      {/* Логотип по центру з ефектом світіння */}
-      <div className="flex justify-center mt-14 md:mt-16 lg:mt-18 relative">
+      {/* Адаптивний логотип з оптимізованим розміром для мобільних пристроїв */}
+      <div className="flex justify-center mt-24 relative">
         {/* Зовнішній шар світіння з анімацією */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
         
@@ -60,11 +59,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         {/* Внутрішній шар світіння, який створює базовий ефект */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-purple-600/15 rounded-full blur-xl" />
         
-        <img 
-          src={logoHero}
-          alt="logo" 
-          className="h-22 md:h-36 lg:h-40 relative z-10 drop-shadow-[0_0_15px_rgba(192,132,252,0.8)]"
-        />
+        <div className="logo-wrapper">
+          <img 
+            src={logoHero}
+            alt={t('logoAlt') || "Logo"}
+            className="h-52 sm:h-24 md:h-32 lg:h-0 relative z-10 drop-shadow-[0_0_15px_rgba(192,132,252,0.8)]"
+            loading="eager"
+          />
+        </div>
       </div>
       
       {/* CSS для анімації світіння стрілки */}
@@ -87,32 +89,39 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         .arrow-glow {
           animation: gladeGlow 2s ease-in-out infinite;
         }
+        
+        @media (prefers-reduced-motion: reduce) {
+          .arrow-glow {
+            animation: none;
+          }
+        }
       `}</style>
 
       <section
         ref={sectionRef}
-        className="min-h-[70vh] flex flex-col items-center justify-center px-2 pt-2 pb-2 relative"
+        className="min-h-[70vh] flex flex-col items-center justify-center px-4 pt-0 pb-6 relative"
       >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-purple-500/20 rounded-full blur-[120px] -z-10" />
         
-        <div className="text-center max-w-3xl mx-auto space-y-4 md:space-y-6 mt-16 md:mt-0">
-          <span className="inline-block text-purple-400 font-medium text-xs md:text-sm lg:text-base tracking-wide px-3 py-1 bg-purple-500/10 rounded-full reveal reveal-delay-1">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 md:space-y-6 mt-6 sm:mt-8 md:mt-10">
+          <span className="inline-block text-purple-400 font-medium text-xs sm:text-sm lg:text-base tracking-wide px-3 py-1 bg-purple-500/10 rounded-full reveal reveal-delay-1">
             {t('withLove')}
           </span>
           
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight reveal reveal-delay-1">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight reveal reveal-delay-1">
             <span className="text-gradient">{t('heroTitle')}</span>
           </h1>
           
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto reveal reveal-delay-2">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto reveal reveal-delay-2">
             {t('heroSubtitle')}
           </p>
           
-          <div className="pt-4 md:pt-6 reveal reveal-delay-3">
+          <div className="pt-3 sm:pt-4 md:pt-6 reveal reveal-delay-3">
             {/* Кнопка для прокрутки до секції донатів */}
             <button 
               onClick={scrollToDonationSection}
-              className="inline-flex items-center gap-2 bg-accent hover:bg-accent/80 px-4 md:px-6 py-2 md:py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl purple-glow"
+              className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-accent hover:bg-accent/80 px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl purple-glow text-sm sm:text-base"
+              aria-label={t('heroButton')}
             >
               {t('heroButton')}
             </button>
@@ -121,10 +130,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           {/* Красива стрілка під кнопкою з ефектом світіння */}
           <button 
             onClick={scrollToNextSection}
-            className="mt-8 text-purple-400 hover:text-purple-500 transition-colors duration-300 relative"
-            aria-label="Прокрутити вниз"
+            className="mt-6 sm:mt-8 text-purple-400 hover:text-purple-500 transition-colors duration-300 relative"
+            aria-label={t('scrollDown') || "Scroll down"}
           >
-            <ArrowDown className="h-8 w-8 md:h-10 md:w-10 arrow-glow" />
+            <ArrowDown className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 arrow-glow" />
           </button>
         </div>
         

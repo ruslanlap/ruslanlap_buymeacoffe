@@ -45,16 +45,20 @@ export type TranslationKey =
   | 'scanToDonate'
   | 'qrCodeDescription'
   | 'footerBy'
-  | 'withLove';  // Виправлено: прибрано зайвий крапку з комою та додано вертикальну риску
+  | 'logoAlt'
+  | 'withLove'
+  | 'scrollDown'; 
 
 // Об'єкт з перекладами
 const translations: Record<Language, Record<TranslationKey, string>> = {
   uk: {
+    // Загальні елементи
+    logoAlt: 'Логотип сайту',
     // Кнопки повідомлення про помилку та пропозиції змін
     reportBugButton: 'Знайшли помилку? Розкажіть нам',
     suggestChangeButton: 'Маєте ідею? Поділіться нею',
     footerBy: 'by ruslanlap',
-
+    scrollDown: 'Прокрутити вниз',
     withLove: 'З любов\'ю для вас 💜',
     
     // Секція "Герой"
@@ -117,19 +121,19 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
       'Кожен відгук — це компас, що направляє наш розвиток у правильному напрямку!',
     leaveReview: 'Поділитися враженнями',
     scanToDonate: 'Скануйте для підтримки',
-    qrCodeDescription:
-      'Один QR-код відкриває шлях до підтримки проєкту — це просто як випити кави!',
+    qrCodeDescription: 'Один QR-код відкриває шлях до підтримки нашого бачення – так само просто, як насолоджуватися кавою!',
   },
   en: {
-    // Секція "Hero"
-    heroTitle: 'Fuel the Innovation Journey!',
+    // General elements
+    logoAlt: 'Website Logo',
+    heroTitle: 'Support My Work!',
     heroSubtitle:
       'Your contribution ignites creativity and transforms bold ideas into reality. Every donation catalyzes revolutionary projects!',
     heroButton: 'Join the Movement',
-
+    scrollDown: 'Scroll down',
     withLove: 'With love for you 💜',
 
-    // Секція "Why Support"
+    // Why Support section
     whySupportTitle: 'The Impact of Your Support',
     whySupportSubtitle:
       'Watch how your generosity transforms into tangible innovations and groundbreaking content.',
@@ -143,7 +147,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reasonCreativitySupportDesc:
       'Your trust fuels our passion to break barriers, explore uncharted territories, and share transformative knowledge.',
 
-    // Секція "Support My Work"
+    // Support My Work section
     donationOptionsTitle: 'Pathways to Partnership',
     donationOptionsSubtitle:
       'Choose your preferred method to join our mission – from lightning-fast transfers to global support!',
@@ -156,7 +160,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     supportViaMonobank: 'Contribute via Mono',
     supportViaPaypal: 'Connect through PayPal',
 
-    // Секція "About Me"
+    // About Me section
     aboutTitle: 'The Creator\'s Journey',
     aboutSubtitle: 'Vision and Philosophy',
     aboutParagraph1:
@@ -166,14 +170,14 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     aboutParagraph3:
       'Your support allows me to concentrate on what truly matters: innovation, quality, and community building. Together, we\'re not just creating products – we\'re shaping culture!',
 
-    // Футер
+    // Footer
     footerThankYou: 'Eternally grateful for your support!',
     footerDescription:
       'Your contributions power the engine of innovation and fuel our commitment to excellence.',
     footerRights: 'All rights protected',
     footerCreatedWith: 'Crafted with inspiration',
 
-    // Секція зворотного зв'язку
+    // Feedback section
     reportBugTitle: 'Spotted an Issue?',
     reportBugDesc:
       'Your keen eye helps us evolve – tell us about technical glitches you\'ve encountered along the way.',
@@ -183,7 +187,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     reportBugButton: 'Highlight a Bug',
     suggestChangeButton: 'Share Your Vision',
 
-    // Відгуки
+    // Reviews
     reviewsTitle: 'Community Voices',
     reviewsDescription:
       'Every review guides our journey like a compass pointing toward excellence!',
@@ -191,6 +195,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     scanToDonate: 'Scan to Empower',
     qrCodeDescription:
       'One QR code opens the gateway to supporting our vision – as simple as enjoying your coffee!',
+    
     // Footer
     footerBy: 'by ruslanlap',
   },
@@ -218,7 +223,7 @@ export const LanguageProvider = ({
 
   // Функція для отримання перекладу за ключем
   const t = (key: TranslationKey): string => {
-    return translations[language][key];
+    return translations[language][key] || key;
   };
 
   return (
