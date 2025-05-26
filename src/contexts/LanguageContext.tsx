@@ -47,7 +47,9 @@ export type TranslationKey =
   | 'footerBy'
   | 'logoAlt'
   | 'withLove'
-  | 'scrollDown'; 
+  | 'scrollDown'
+  | 'feedbackTitle'
+  | 'feedbackSubtitle';
 
 // Об'єкт з перекладами
 const translations: Record<Language, Record<TranslationKey, string>> = {
@@ -60,7 +62,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     footerBy: 'by ruslanlap',
     scrollDown: 'Прокрутити вниз',
     withLove: 'З любов\'ю для вас 💜',
-    
+
     // Секція "Герой"
     heroTitle: 'Підтримайте мою роботу!',
     heroSubtitle:
@@ -100,7 +102,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     aboutParagraph1: 'Я поєдную розробку з мистецтвом творення, щоб створювати проєкти, які не лише розважають, але й вирішують реальні виклики.',
     aboutParagraph2: 'Моя місія — трансформувати ідеї в живі проєкти, що служать спільноті. Кожен внесок розпалює полум\'я творчості та відкриває нові можливості.',
     aboutParagraph3: 'З вашою підтримкою я можу фокусуватися на найголовнішому: інноваціях, якості та спільноті. Разом ми не просто створюємо продукт — ми формуємо культуру!',
-      
+
     footerThankYou: 'Вдячний за вашу підтримку!',
     footerDescription:
       'Кожен ваш внесок — це для мене мотивація розвивати проєкти і вкладати час у розробу нових продуктів',
@@ -108,6 +110,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     footerCreatedWith: 'Зроблено з натхненням',
 
     // Секція зворотного зв'язку
+    feedbackTitle: 'Зворотний зв\'язок',
+    feedbackSubtitle: 'Повідомте нас про будь-які проблеми або пропозиції змін',
     reportBugTitle: 'Помітили недолік?',
     reportBugDesc:
       'Ваша уважність допомагає нам удосконалюватись — розкажіть про технічні проблеми, з якими ви зіткнулись.',
@@ -178,6 +182,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     footerCreatedWith: 'Crafted with inspiration',
 
     // Feedback section
+    feedbackTitle: 'Feedback',
+    feedbackSubtitle: 'Report any issues or suggestions for improvements',
     reportBugTitle: 'Spotted an Issue?',
     reportBugDesc:
       'Your keen eye helps us evolve – tell us about technical glitches you\'ve encountered along the way.',
@@ -195,7 +201,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     scanToDonate: 'Scan to Empower',
     qrCodeDescription:
       'One QR code opens the gateway to supporting our vision – as simple as enjoying your coffee!',
-    
+
     // Footer
     footerBy: 'by ruslanlap',
   },
