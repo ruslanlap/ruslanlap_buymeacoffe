@@ -18,7 +18,14 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+            echo "Lockfile found. Using npm ci"
+            npm ci
+          else
+            echo "No lockfile found. Using npm install"
+            npm install
+          fi
 
       - name: Build
         run: npm run build
