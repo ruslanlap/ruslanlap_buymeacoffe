@@ -56,7 +56,7 @@ const AnimatedBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-screen h-screen min-w-screen min-h-screen z-0 opacity-30"
+      className="fixed inset-0 w-screen h-screen min-w-screen min-h-screen z-0 opacity-30"
       style={{ pointerEvents: 'none' }}
     />
   );

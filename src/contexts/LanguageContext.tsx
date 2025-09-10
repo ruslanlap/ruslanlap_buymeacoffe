@@ -225,7 +225,7 @@ export const LanguageProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [language, setLanguage] = useState<Language>('uk');
+  const [language, setLanguage] = useState<Language>('en');
 
   // Функція для отримання перекладу за ключем
   const t = (key: TranslationKey): string => {
