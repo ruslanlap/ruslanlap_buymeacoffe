@@ -6,6 +6,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const queryClient = new QueryClient();
 
@@ -13,6 +14,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TooltipProvider>
+        <ScrollProgress />
         <Toaster />
         <Sonner />
         <HashRouter>

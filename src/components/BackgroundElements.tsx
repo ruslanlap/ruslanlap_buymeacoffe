@@ -16,6 +16,16 @@ const BackgroundElements = () => {
       {/* Accent gradient circle on the left */}
       <div className={`absolute top-1/3 left-0 w-[400px] h-[400px] ${isDark ? 'bg-accent/10' : 'bg-accent/5'} rounded-full blur-[100px] -z-10`} />
       
+      {/* Subtle texture overlay for depth */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)",
+          backgroundSize: "14px 14px",
+        }}
+      />
+
       {/* Dark/light background */}
       <div className="absolute inset-0 bg-background -z-30" />
     </div>

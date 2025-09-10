@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Bug, Lightbulb } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Header = () => {
   const { t, language } = useLanguage();
@@ -29,9 +29,24 @@ const Header = () => {
     return false;
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled((window.scrollY || 0) > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="w-full z-50 py-2 sm:py-3 px-3 sm:px-4 mobile-safe-area sticky top-0 ">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <header
+      className={`w-full z-50 sticky top-0 transition-all duration-300 mobile-safe-area ${
+        scrolled
+          ? "backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-background/80 border-b border-border/50 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.35)]"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-2 sm:py-3 px-3 sm:px-4">
         {/* Left Section - Buttons */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           {/* Report Bug Button */}

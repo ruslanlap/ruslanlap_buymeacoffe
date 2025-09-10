@@ -364,6 +364,22 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
   }
+
+  /* Gradient border utility for CTAs */
+  .gradient-border {
+    background: linear-gradient(90deg, #a78bfa, #ec4899, #a78bfa);
+    padding: 1px; /* border thickness */
+  }
+  .gradient-border .gb-inner {
+    background-clip: padding-box;
+    display: inline-flex;
+  }
+
+  /* Tilt + spotlight sensible defaults via class hooks (used by component) */
+  .tilt-spotlight {
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
 }
 
 .reveal {
@@ -568,6 +584,12 @@ header .absolute * {
 @media (prefers-reduced-motion: reduce) {
   .pulsing-arrow {
     animation: none;
+  }
+  /* Disable spotlight when users prefer reduced motion */
+  .tilt-spotlight,
+  .gradient-border {
+    transition: none !important;
+    animation: none !important;
   }
 }
 /* Fluid Typography - scales between mobile and desktop */

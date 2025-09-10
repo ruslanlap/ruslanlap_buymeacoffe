@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import React from "react";
 import logoHero from "../img/icon384.png";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 interface HeroSectionProps {
   children?: React.ReactNode;
@@ -33,6 +33,27 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
     };
   }, []);
 
+  // Subtle mouse parallax for background gradients
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 120, damping: 20, mass: 0.3 });
+  const sy = useSpring(my, { stiffness: 120, damping: 20, mass: 0.3 });
+
+  const layer1X = useTransform(sx, [ -0.5, 0.5 ], [ -20, 20 ]);
+  const layer1Y = useTransform(sy, [ -0.5, 0.5 ], [ -20, 20 ]);
+  const layer2X = useTransform(sx, [ -0.5, 0.5 ], [ -12, 12 ]);
+  const layer2Y = useTransform(sy, [ -0.5, 0.5 ], [ -12, 12 ]);
+  const layer3X = useTransform(sx, [ -0.5, 0.5 ], [ -6, 6 ]);
+  const layer3Y = useTransform(sy, [ -0.5, 0.5 ], [ -6, 6 ]);
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { innerWidth, innerHeight } = window;
+    const nx = e.clientX / innerWidth - 0.5; // -0.5 to 0.5
+    const ny = e.clientY / innerHeight - 0.5; // -0.5 to 0.5
+    mx.set(nx);
+    my.set(ny);
+  };
+
   const scrollToNextSection = () => {
     const nextSection = document.getElementById("why-support");
     if (nextSection) {
@@ -48,13 +69,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" onMouseMove={onMouseMove}>
       <div className="flex justify-center mt-16 sm:mt-20 md:mt-24 relative">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] max-w-[1200px] max-h-[1200px] bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-full blur-2xl animate-pulse"
+          style={{ x: layer1X, y: layer1Y }}
         />
 
         <motion.div
@@ -62,6 +84,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] bg-gradient-to-r from-purple-400/10 via-pink-400/10 to-purple-400/10 rounded-full blur-xl animate-[ping_3s_ease-in-out_infinite]"
+          style={{ x: layer2X, y: layer2Y }}
         />
 
         <motion.div
@@ -69,6 +92,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-gradient-to-r from-purple-600/15 via-pink-600/15 to-purple-600/15 rounded-full blur"
+          style={{ x: layer3X, y: layer3Y }}
         />
 
         <motion.div
@@ -133,13 +157,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
             transition={{ duration: 0.5, delay: 1.6 }}
             className="pt-3 sm:pt-4 md:pt-6 reveal reveal-delay-3"
           >
-            <button
-              onClick={scrollToDonationSection}
-              className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 hover:from-purple-600 hover:via-pink-600 hover:to-purple-600 px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl text-white hover:scale-105"
-              aria-label={t("heroButton")}
-            >
-              {t("heroButton")}
-            </button>
+            <div className="gradient-border inline-block rounded-lg">
+              <button
+                onClick={scrollToDonationSection}
+                className="gb-inner inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 hover:from-purple-600 hover:via-pink-600 hover:to-purple-600 px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl text-white hover:scale-105"
+                aria-label={t("heroButton")}
+              >
+                {t("heroButton")}
+              </button>
+            </div>
           </motion.div>
 
           <motion.div

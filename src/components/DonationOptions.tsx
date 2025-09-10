@@ -3,6 +3,7 @@ import { useRef } from "react";
 import CopyButton from "./CopyButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import TiltSpotlightCard from "@/components/TiltSpotlightCard";
 import qrCodeImage from "../img/monobank-qr-code.jpg";
 
 const DonationCard = ({
@@ -33,7 +34,7 @@ const DonationCard = ({
       className="group relative"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-      <div className="relative p-6 bg-background/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl hover:border-purple-500/40 transition-all duration-300">
+      <TiltSpotlightCard className="relative p-6 bg-background/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl hover:border-purple-500/40 transition-all duration-300">
         <div className="flex flex-col sm:flex-row items-start gap-4">
           <motion.div
             whileHover={{ scale: 1.1 }}
@@ -51,15 +52,17 @@ const DonationCard = ({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                href={buttonUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 hover:from-purple-600 hover:via-pink-600 hover:to-purple-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 w-full sm:w-auto text-white"
-              >
-                {buttonText}
-              </motion.a>
+              <div className="gradient-border rounded-lg w-full sm:w-auto">
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  href={buttonUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gb-inner inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 hover:from-purple-600 hover:via-pink-600 hover:to-purple-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 w-full sm:w-auto text-white"
+                >
+                  {buttonText}
+                </motion.a>
+              </div>
 
               <CopyButton
                 value={copyValue}
@@ -68,7 +71,7 @@ const DonationCard = ({
             </div>
           </div>
         </div>
-      </div>
+      </TiltSpotlightCard>
     </motion.div>
   );
 };
