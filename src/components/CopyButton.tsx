@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { toast } from "sonner";
@@ -16,7 +15,7 @@ const CopyButton = ({ value, displayValue }: CopyButtonProps) => {
       await navigator.clipboard.writeText(value);
       setCopied(true);
       toast.success("Скопійовано!");
-      
+
       setTimeout(() => {
         setCopied(false);
       }, 2000);

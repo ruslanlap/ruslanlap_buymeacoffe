@@ -35,7 +35,7 @@ const AnimatedBackground = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Update and draw particles
-      particles.forEach(particle => {
+      particles.forEach((particle) => {
         particle.update();
         particle.draw(ctx);
       });
@@ -57,7 +57,7 @@ const AnimatedBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-screen h-screen min-w-screen min-h-screen z-0 opacity-30"
-      style={{ pointerEvents: 'none' }}
+      style={{ pointerEvents: "none" }}
     />
   );
 };
@@ -111,7 +111,8 @@ function drawConnections(particles: Particle[], ctx: CanvasRenderingContext2D) {
       const dy = particles[a].y - particles[b].y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < 200) { // Increased connection distance
+      if (distance < 200) {
+        // Increased connection distance
         ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - distance / 200)})`;
         ctx.lineWidth = 1; // Increased line width
         ctx.beginPath();

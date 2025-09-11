@@ -55,14 +55,11 @@ const Index: React.FC<IndexProps> = () => {
       <div className="min-h-screen bg-background text-foreground overflow-hidden">
         {/* Toast notifications */}
         <Toaster position="top-center" />
-
         {/* Background elements and animation */}
         <BackgroundElements />
         <AnimatedBackground />
-
         {/* Header with language and theme toggles */}
         <Header />
-
         {/* Page content */}
         <HeroSection /> {/* Переконайтеся, що тут немає некоректних пропсів */}
         <WhySupportSection />

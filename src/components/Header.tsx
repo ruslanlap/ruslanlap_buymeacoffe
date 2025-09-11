@@ -12,18 +12,20 @@ const Header = () => {
   const formUrl = "https://forms.gle/TgwzmaFosrBJ5WsN8";
 
   const handleReportBug = () => {
-    const message = language === "uk"
-      ? "Дякуємо за повідомлення про помилку!"
-      : "Thank you for reporting the bug!";
+    const message =
+      language === "uk"
+        ? "Дякуємо за повідомлення про помилку!"
+        : "Thank you for reporting the bug!";
     toast.success(message);
     window.open(formUrl, "_blank", "noopener,noreferrer");
     return false;
   };
 
   const handleSuggestChange = () => {
-    const message = language === "uk"
-      ? "Дякуємо за вашу пропозицію!"
-      : "Thank you for your suggestion!";
+    const message =
+      language === "uk"
+        ? "Дякуємо за вашу пропозицію!"
+        : "Thank you for your suggestion!";
     toast.success(message);
     window.open(formUrl, "_blank", "noopener,noreferrer");
     return false;
@@ -58,7 +60,9 @@ const Header = () => {
             aria-label={t("reportBugButton")}
           >
             <Bug className="h-5 w-5 sm:mr-2" />
-            <span className="hidden sm:inline text-sm font-medium">{t("reportBugButton")}</span>
+            <span className="hidden sm:inline text-sm font-medium">
+              {t("reportBugButton")}
+            </span>
           </Button>
 
           {/* Suggest Change Button */}
@@ -70,7 +74,9 @@ const Header = () => {
             aria-label={t("suggestChangeButton")}
           >
             <Lightbulb className="h-5 w-5 sm:mr-2" />
-            <span className="hidden sm:inline text-sm font-medium">{t("suggestChangeButton")}</span>
+            <span className="hidden sm:inline text-sm font-medium">
+              {t("suggestChangeButton")}
+            </span>
           </Button>
         </div>
 

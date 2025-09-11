@@ -4,7 +4,7 @@ import CopyButton from "./CopyButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import TiltSpotlightCard from "@/components/TiltSpotlightCard";
-import qrCodeImage from "../img/monobank-qr-code.jpg";
+import qrCodeImage from "../img/monobank-qr-code.webp";
 
 const DonationCard = ({
   icon,
@@ -14,7 +14,7 @@ const DonationCard = ({
   buttonUrl,
   copyValue,
   copyDisplayValue,
-  delay
+  delay,
 }: {
   icon: React.ReactNode;
   title: string;
@@ -47,9 +47,7 @@ const DonationCard = ({
             <h3 className="text-xl font-semibold text-center sm:text-left bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
               {title}
             </h3>
-            <p className="text-muted-foreground">
-              {description}
-            </p>
+            <p className="text-muted-foreground">{description}</p>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full">
               <div className="gradient-border rounded-lg w-full sm:w-auto">
@@ -64,10 +62,7 @@ const DonationCard = ({
                 </motion.a>
               </div>
 
-              <CopyButton
-                value={copyValue}
-                displayValue={copyDisplayValue}
-              />
+              <CopyButton value={copyValue} displayValue={copyDisplayValue} />
             </div>
           </div>
         </div>
@@ -109,7 +104,7 @@ const DonationOptions = () => {
             viewport={{ once: true }}
             className="inline-block text-purple-400 font-medium tracking-wide px-3 py-1 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-full mb-4 backdrop-blur-sm"
           >
-            {t('donationOptionsTitle')}
+            {t("donationOptionsTitle")}
           </motion.span>
 
           <motion.h2
@@ -120,7 +115,7 @@ const DonationOptions = () => {
             className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-4 md:mb-6"
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-              {t('donationOptionsTitle')}
+              {t("donationOptionsTitle")}
             </span>
           </motion.h2>
 
@@ -131,16 +126,16 @@ const DonationOptions = () => {
             viewport={{ once: true }}
             className="text-muted-foreground max-w-2xl mx-auto"
           >
-            {t('donationOptionsSubtitle')}
+            {t("donationOptionsSubtitle")}
           </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-6 md:gap-8">
           <DonationCard
             icon={<Landmark className="h-7 w-7" />}
-            title={t('monobankTitle')}
-            description={t('monobankDesc')}
-            buttonText={t('supportViaMonobank')}
+            title={t("monobankTitle")}
+            description={t("monobankDesc")}
+            buttonText={t("supportViaMonobank")}
             buttonUrl="https://send.monobank.ua/jar/ARJZzebAyX"
             copyValue="4441111122838976"
             copyDisplayValue="4441 1111 2283 8976"
@@ -149,9 +144,9 @@ const DonationOptions = () => {
 
           <DonationCard
             icon={<CreditCard className="h-7 w-7" />}
-            title={t('paypalTitle')}
-            description={t('paypalDesc')}
-            buttonText={t('supportViaPaypal')}
+            title={t("paypalTitle")}
+            description={t("paypalDesc")}
+            buttonText={t("supportViaPaypal")}
             buttonUrl="mailto:lapin@ucu.edu.ua"
             copyValue="lapin@ucu.edu.ua"
             delay={1}
@@ -166,21 +161,16 @@ const DonationOptions = () => {
           className="mt-8 text-center"
         >
           <h3 className="text-lg font-semibold text-purple-400 mb-4">
-            {t('scanToDonate')}
+            {t("scanToDonate")}
           </h3>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="inline-block"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} className="inline-block">
             <img
               src={qrCodeImage}
               alt="QR Code for Monobank Donation"
               className="rounded-lg shadow-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300"
             />
           </motion.div>
-          <p className="text-muted-foreground mt-2">
-            {t('qrCodeDescription')}
-          </p>
+          <p className="text-muted-foreground mt-2">{t("qrCodeDescription")}</p>
         </motion.div>
       </div>
     </section>

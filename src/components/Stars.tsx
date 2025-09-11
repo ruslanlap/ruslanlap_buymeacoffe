@@ -67,21 +67,25 @@ const Stars = () => {
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto text-center">
         {/* Improved heading with better typography */}
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8 
+        <h2
+          className="text-3xl md:text-4xl font-bold tracking-tight mb-8 
           relative after:content-[''] after:block after:w-20 after:h-1 after:bg-accent 
-          after:mx-auto after:mt-4 animate-fade-in-slow">
+          after:mx-auto after:mt-4 animate-fade-in-slow"
+        >
           {t("reviewsTitle")}
         </h2>
 
-        <div className="bg-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow 
-          transform hover:-translate-y-1 duration-300 animate-fade-in-slow">
+        <div
+          className="bg-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow 
+          transform hover:-translate-y-1 duration-300 animate-fade-in-slow"
+        >
           {/* Firefox Icon with non-looping fade-in animation */}
           <div className="flex justify-center mb-8">
             <img
               src={firefoxIcon}
               alt="Firefox Icon"
               className="w-14 h-14 object-contain rounded-full bg-purple-500/10 p-2 shadow-md 
-                animate-fade-in-slow" 
+                animate-fade-in-slow"
             />
           </div>
 
@@ -103,8 +107,8 @@ const Stars = () => {
                       ? "text-yellow-400 fill-yellow-400 scale-110"
                       : "text-gray-300 scale-100 hover:scale-105"
                     } 
-                    ${animationComplete && i < filledStars 
-                      ? "hover:text-yellow-500 hover:fill-yellow-500 cursor-pointer" 
+                    ${animationComplete && i < filledStars
+                      ? "hover:text-yellow-500 hover:fill-yellow-500 cursor-pointer"
                       : ""
                     }
                     ${i === filledStars - 1 && !hoverStar ? "animate-pulse-slow" : ""}`}
@@ -114,9 +118,11 @@ const Stars = () => {
           </div>
 
           {/* Improved paragraph typography with better line height and letter spacing */}
-          <p className={`text-lg leading-relaxed mb-8 text-muted-foreground max-w-2xl mx-auto font-medium
+          <p
+            className={`text-lg leading-relaxed mb-8 text-muted-foreground max-w-2xl mx-auto font-medium
             transition-opacity duration-700 
-            ${initialAnimationDone ? "opacity-100" : "opacity-0"} animate-fade-in-slow`}>
+            ${initialAnimationDone ? "opacity-100" : "opacity-0"} animate-fade-in-slow`}
+          >
             {t("reviewsDescription")}
           </p>
 
@@ -127,8 +133,9 @@ const Stars = () => {
               px-8 py-3 rounded-lg font-semibold tracking-wide text-base
               transition-all duration-500 transform hover:scale-105 
               ${initialAnimationDone
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-4"} animate-fade-in-slow`}
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+              } animate-fade-in-slow`}
           >
             {t("leaveReview")}
           </button>

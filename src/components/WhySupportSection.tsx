@@ -12,7 +12,12 @@ interface SupportReasonProps {
   delay: number;
 }
 
-const SupportReason = ({ icon, title, description, delay }: SupportReasonProps) => {
+const SupportReason = ({
+  icon,
+  title,
+  description,
+  delay,
+}: SupportReasonProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -75,7 +80,7 @@ const WhySupportSection = () => {
             viewport={{ once: true }}
             className="inline-block text-purple-400 font-medium tracking-wide px-3 py-1 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-full mb-4 backdrop-blur-sm"
           >
-            {t('whySupportTitle')}
+            {t("whySupportTitle")}
           </motion.span>
 
           <motion.h2
@@ -86,7 +91,7 @@ const WhySupportSection = () => {
             className="text-h1 mb-4 sm:mb-6"
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-              {t('whySupportTitle')}
+              {t("whySupportTitle")}
             </span>
           </motion.h2>
 
@@ -97,29 +102,29 @@ const WhySupportSection = () => {
             viewport={{ once: true }}
             className="text-body text-muted-foreground max-w-2xl mx-auto"
           >
-            {t('whySupportSubtitle')}
+            {t("whySupportSubtitle")}
           </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           <SupportReason
             icon={<Rocket className="h-8 w-8" />}
-            title={t('reasonProjectDevelopment')}
-            description={t('reasonProjectDevelopmentDesc')}
+            title={t("reasonProjectDevelopment")}
+            description={t("reasonProjectDevelopmentDesc")}
             delay={0.8}
           />
 
           <SupportReason
             icon={<LightbulbIcon className="h-8 w-8" />}
-            title={t('reasonContentCreation')}
-            description={t('reasonContentCreationDesc')}
+            title={t("reasonContentCreation")}
+            description={t("reasonContentCreationDesc")}
             delay={1}
           />
 
           <SupportReason
             icon={<Heart className="h-8 w-8" />}
-            title={t('reasonCreativitySupport')}
-            description={t('reasonCreativitySupportDesc')}
+            title={t("reasonCreativitySupport")}
+            description={t("reasonCreativitySupportDesc")}
             delay={1.2}
           />
         </div>

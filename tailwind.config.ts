@@ -90,7 +90,7 @@ export default {
             "background-position": "right center",
           },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
@@ -111,7 +111,7 @@ export default {
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
         // Add glow animation for .glow-effect
-        "glow": {
+        glow: {
           from: {
             filter: "drop-shadow(0 0 5px rgba(168, 85, 247, 0.7))",
           },
@@ -124,13 +124,13 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "gradient-text": "gradient-text 3s ease infinite",
-        "float": "float 3s ease-in-out infinite",
+        float: "float 3s ease-in-out infinite",
         "pulse-light": "pulse-light 2s ease-in-out infinite",
         "fade-in": "fade-in 0.7s ease-out forwards",
         "fade-in-right": "fade-in-right 0.7s ease-out forwards",
         "fade-in-left": "fade-in-left 0.7s ease-out forwards",
         // Add glow animation
-        "glow": "glow 1.5s ease-in-out infinite alternate",
+        glow: "glow 1.5s ease-in-out infinite alternate",
       },
       // Extend filters for drop-shadow
       filter: {

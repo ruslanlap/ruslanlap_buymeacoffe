@@ -39,12 +39,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
   const sx = useSpring(mx, { stiffness: 120, damping: 20, mass: 0.3 });
   const sy = useSpring(my, { stiffness: 120, damping: 20, mass: 0.3 });
 
-  const layer1X = useTransform(sx, [ -0.5, 0.5 ], [ -20, 20 ]);
-  const layer1Y = useTransform(sy, [ -0.5, 0.5 ], [ -20, 20 ]);
-  const layer2X = useTransform(sx, [ -0.5, 0.5 ], [ -12, 12 ]);
-  const layer2Y = useTransform(sy, [ -0.5, 0.5 ], [ -12, 12 ]);
-  const layer3X = useTransform(sx, [ -0.5, 0.5 ], [ -6, 6 ]);
-  const layer3Y = useTransform(sy, [ -0.5, 0.5 ], [ -6, 6 ]);
+  const layer1X = useTransform(sx, [-0.5, 0.5], [-20, 20]);
+  const layer1Y = useTransform(sy, [-0.5, 0.5], [-20, 20]);
+  const layer2X = useTransform(sx, [-0.5, 0.5], [-12, 12]);
+  const layer2Y = useTransform(sy, [-0.5, 0.5], [-12, 12]);
+  const layer3X = useTransform(sx, [-0.5, 0.5], [-6, 6]);
+  const layer3Y = useTransform(sy, [-0.5, 0.5], [-6, 6]);
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { innerWidth, innerHeight } = window;

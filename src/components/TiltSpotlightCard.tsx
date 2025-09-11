@@ -22,7 +22,9 @@ const TiltSpotlightCard: React.FC<TiltSpotlightCardProps> = ({
   useEffect(() => {
     // Disable on devices without hover or with reduced motion
     const hoverCapable = window.matchMedia("(hover: hover)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
     setEnabled(hoverCapable && !reduced);
   }, []);
 
@@ -35,7 +37,8 @@ const TiltSpotlightCard: React.FC<TiltSpotlightCardProps> = ({
   };
 
   const transform = useMemo(() => {
-    if (!enabled || !isHovering) return "perspective(900px) rotateX(0) rotateY(0)";
+    if (!enabled || !isHovering)
+      return "perspective(900px) rotateX(0) rotateY(0)";
     const ry = (coords.x - 0.5) * (maxTilt * 2);
     const rx = -(coords.y - 0.5) * (maxTilt * 2);
     return `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
@@ -69,4 +72,3 @@ const TiltSpotlightCard: React.FC<TiltSpotlightCardProps> = ({
 };
 
 export default TiltSpotlightCard;
-
