@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 gemini
 GEMINI.md
+CLAUDE.md
 AGENTS.md
 gemini_debug.log
 .devcontainer 
