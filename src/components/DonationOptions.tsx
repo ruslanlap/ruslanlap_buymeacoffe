@@ -33,30 +33,56 @@ const DonationCard = ({
       viewport={{ once: true }}
       className="group relative"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-      <TiltSpotlightCard className="relative p-6 bg-background/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl hover:border-purple-500/40 transition-all duration-300">
-        <div className="flex flex-col sm:flex-row items-start gap-4">
+      <div
+        className="absolute inset-0 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"
+        style={{
+          background: 'linear-gradient(135deg, rgba(255,107,53,0.12) 0%, rgba(247,147,30,0.15) 100%)'
+        }}
+      />
+      <TiltSpotlightCard className="relative p-8 bg-background/80 backdrop-blur-sm border-2 rounded-3xl transition-all duration-300"
+        style={{
+          borderColor: 'rgba(255,107,53,0.2)'
+        }}
+      >
+        <div className="flex flex-col sm:flex-row items-start gap-6">
           <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="p-4 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 rounded-full text-purple-400 self-center sm:self-start group-hover:from-purple-500/30 group-hover:via-pink-500/30 group-hover:to-purple-500/30 transition-all duration-300"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            className="p-5 rounded-2xl self-center sm:self-start transition-all duration-300"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255,107,53,0.2) 0%, rgba(247,147,30,0.25) 100%)',
+              color: '#FF6B35'
+            }}
           >
             {icon}
           </motion.div>
 
           <div className="space-y-4 w-full">
-            <h3 className="text-xl font-semibold text-center sm:text-left bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+            <h3
+              className="text-2xl font-bold text-center sm:text-left"
+              style={{
+                fontFamily: 'var(--font-display)',
+                background: 'linear-gradient(120deg, #FF6B35 0%, #F7931E 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
               {title}
             </h3>
-            <p className="text-muted-foreground">{description}</p>
+            <p className="text-muted-foreground text-base leading-relaxed">{description}</p>
 
-            <div className="flex flex-col sm:flex-row gap-3 w-full">
-              <div className="gradient-border rounded-lg w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 w-full pt-2">
+              <div className="gradient-border rounded-xl w-full sm:w-auto">
                 <motion.a
                   whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
                   href={buttonUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="gb-inner inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 hover:from-purple-600 hover:via-pink-600 hover:to-purple-600 px-4 py-2 rounded-lg font-medium transition-all duration-300 w-full sm:w-auto text-white"
+                  className="gb-inner inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 w-full sm:w-auto text-white shadow-lg"
+                  style={{
+                    background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)'
+                  }}
                 >
                   {buttonText}
                 </motion.a>
@@ -86,7 +112,10 @@ const DonationOptions = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent"
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(255,107,53,0.05) 0%, transparent 50%)'
+        }}
       />
 
       <div className="max-w-5xl mx-auto relative">
@@ -102,7 +131,12 @@ const DonationOptions = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="inline-block text-purple-400 font-medium tracking-wide px-3 py-1 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-full mb-4 backdrop-blur-sm"
+            className="inline-block font-semibold tracking-wider px-4 py-2 rounded-full mb-4 backdrop-blur-sm border-2 uppercase text-sm"
+            style={{
+              color: '#FF6B35',
+              background: 'linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(247,147,30,0.15) 100%)',
+              borderColor: 'rgba(255,107,53,0.3)'
+            }}
           >
             {t("donationOptionsTitle")}
           </motion.span>
@@ -112,9 +146,13 @@ const DonationOptions = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-4 md:mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
+            style={{
+              fontFamily: 'var(--font-display)',
+              letterSpacing: '-0.02em'
+            }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+            <span className="text-gradient">
               {t("donationOptionsTitle")}
             </span>
           </motion.h2>
@@ -158,19 +196,31 @@ const DonationOptions = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.2 }}
           viewport={{ once: true }}
-          className="mt-8 text-center"
+          className="mt-12 text-center"
         >
-          <h3 className="text-lg font-semibold text-purple-400 mb-4">
+          <h3
+            className="text-xl md:text-2xl font-bold mb-6"
+            style={{
+              fontFamily: 'var(--font-display)',
+              color: '#FF6B35'
+            }}
+          >
             {t("scanToDonate")}
           </h3>
-          <motion.div whileHover={{ scale: 1.05 }} className="inline-block">
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: 2 }}
+            className="inline-block"
+          >
             <img
               src={qrCodeImage}
               alt="QR Code for Monobank Donation"
-              className="rounded-lg shadow-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300"
+              className="rounded-2xl shadow-2xl border-2 transition-all duration-300"
+              style={{
+                borderColor: 'rgba(255,107,53,0.3)'
+              }}
             />
           </motion.div>
-          <p className="text-muted-foreground mt-2">{t("qrCodeDescription")}</p>
+          <p className="text-muted-foreground mt-4 text-base">{t("qrCodeDescription")}</p>
         </motion.div>
       </div>
     </section>

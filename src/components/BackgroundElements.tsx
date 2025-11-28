@@ -6,28 +6,43 @@ const BackgroundElements = () => {
 
   return (
     <div className="fixed inset-0 -z-20 overflow-hidden">
-      {/* Main gradient circle */}
+      {/* Warm sunrise gradient circle at top */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] ${isDark ? "bg-purple-500/10" : "bg-purple-500/5"} rounded-full blur-[150px] -z-10`}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full blur-[180px] -z-10"
+        style={{
+          background: isDark
+            ? 'radial-gradient(circle, rgba(247,147,30,0.15) 0%, rgba(255,107,53,0.1) 50%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(247,147,30,0.08) 0%, rgba(255,107,53,0.05) 50%, transparent 70%)'
+        }}
       />
 
-      {/* Additional gradient circle at bottom */}
+      {/* Warm coral gradient circle at bottom right */}
       <div
-        className={`absolute bottom-0 right-0 w-[600px] h-[600px] ${isDark ? "bg-purple-600/10" : "bg-purple-600/5"} rounded-full blur-[120px] -z-10`}
+        className="absolute bottom-0 right-0 w-[700px] h-[700px] rounded-full blur-[150px] -z-10"
+        style={{
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%)'
+        }}
       />
 
-      {/* Accent gradient circle on the left */}
+      {/* Teal accent gradient circle on the left */}
       <div
-        className={`absolute top-1/3 left-0 w-[400px] h-[400px] ${isDark ? "bg-accent/10" : "bg-accent/5"} rounded-full blur-[100px] -z-10`}
+        className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full blur-[120px] -z-10"
+        style={{
+          background: isDark
+            ? 'radial-gradient(circle, rgba(0,78,137,0.12) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(0,78,137,0.06) 0%, transparent 70%)'
+        }}
       />
 
-      {/* Subtle texture overlay for depth */}
+      {/* Warm mesh gradient overlay for depth */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)",
-          backgroundSize: "14px 14px",
+            "radial-gradient(circle at 1px 1px, rgba(255,107,53,0.3) 1px, transparent 0)",
+          backgroundSize: "16px 16px",
         }}
       />
 

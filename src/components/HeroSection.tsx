@@ -106,15 +106,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ 
-            duration: 1.2, 
+          transition={{
+            duration: 1.2,
             ease: [0.25, 0.46, 0.45, 0.94],
             type: "spring",
             stiffness: 100
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] max-w-[1400px] max-h-[1400px] bg-gradient-to-r from-purple-500/8 via-pink-500/12 to-purple-500/8 rounded-full blur-3xl"
-          style={{ 
-            x: layer1X, 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] max-w-[1400px] max-h-[1400px] rounded-full blur-3xl"
+          style={{
+            background: 'radial-gradient(circle, rgba(247,147,30,0.12) 0%, rgba(255,107,53,0.08) 50%, transparent 70%)',
+            x: layer1X,
             y: layer1Y,
             scale: useTransform(scrollYProgress, [0, 1], [1, 1.2])
           }}
@@ -123,16 +124,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ 
-            duration: 1, 
-            delay: 0.2, 
+          transition={{
+            duration: 1,
+            delay: 0.2,
             ease: [0.25, 0.46, 0.45, 0.94],
             type: "spring",
             stiffness: 120
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] max-w-[1100px] max-h-[1100px] bg-gradient-to-r from-purple-400/12 via-pink-400/16 to-purple-400/12 rounded-full blur-2xl"
-          style={{ 
-            x: layer2X, 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] max-w-[1100px] max-h-[1100px] rounded-full blur-2xl"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,107,53,0.15) 0%, rgba(247,147,30,0.1) 50%, transparent 70%)',
+            x: layer2X,
             y: layer2Y,
             rotate: useTransform(scrollYProgress, [0, 1], [0, 45])
           }}
@@ -141,16 +143,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ 
-            duration: 0.8, 
-            delay: 0.4, 
+          transition={{
+            duration: 0.8,
+            delay: 0.4,
             ease: [0.25, 0.46, 0.45, 0.94],
             type: "spring",
             stiffness: 140
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-gradient-to-r from-purple-600/20 via-pink-600/25 to-purple-600/20 rounded-full blur-xl"
-          style={{ 
-            x: layer3X, 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] rounded-full blur-xl"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,107,53,0.2) 0%, rgba(0,78,137,0.15) 100%)',
+            x: layer3X,
             y: layer3Y,
             rotate: useTransform(scrollYProgress, [0, 1], [0, -30])
           }}
@@ -185,13 +188,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           <motion.img
             src={logoHero}
             alt={t("logoAlt") || "Logo"}
-            className="h-48 sm:h-56 md:h-64 lg:h-80 relative z-10 drop-shadow-[0_0_25px_rgba(192,132,252,0.6)]"
+            className="h-48 sm:h-56 md:h-64 lg:h-80 relative z-10"
+            style={{
+              filter: 'drop-shadow(0 0 30px rgba(255,107,53,0.5))'
+            }}
             loading="eager"
             whileHover={{
               filter: [
-                "drop-shadow(0 0 25px rgba(192,132,252,0.6))",
-                "drop-shadow(0 0 40px rgba(192,132,252,0.8))",
-                "drop-shadow(0 0 25px rgba(192,132,252,0.6))"
+                "drop-shadow(0 0 30px rgba(255,107,53,0.5))",
+                "drop-shadow(0 0 45px rgba(247,147,30,0.7))",
+                "drop-shadow(0 0 30px rgba(255,107,53,0.5))"
               ],
               transition: { duration: 0.3 }
             }}
@@ -204,24 +210,26 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.5 }}
           >
-            {[...Array(6)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-2 h-2 bg-purple-400/60 rounded-full"
+                className="absolute w-2 h-2 rounded-full"
                 style={{
-                  left: `${20 + Math.cos(i * 60 * Math.PI / 180) * 120}px`,
-                  top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 120}px`,
+                  background: i % 2 === 0 ? '#FF6B35' : '#F7931E',
+                  opacity: 0.5,
+                  left: `${20 + Math.cos(i * 45 * Math.PI / 180) * 120}px`,
+                  top: `${20 + Math.sin(i * 45 * Math.PI / 180) * 120}px`,
                 }}
                 animate={{
-                  y: [-10, 10, -10],
-                  opacity: [0.3, 0.8, 0.3],
-                  scale: [0.8, 1.2, 0.8]
+                  y: [-12, 12, -12],
+                  opacity: [0.3, 0.7, 0.3],
+                  scale: [0.8, 1.3, 0.8]
                 }}
                 transition={{
-                  duration: 2 + i * 0.2,
+                  duration: 2 + i * 0.25,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: i * 0.3
+                  delay: i * 0.2
                 }}
               />
             ))}
@@ -234,20 +242,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
         className="min-h-[70vh] flex flex-col items-center justify-center px-4 pt-0 pb-6 relative"
         style={{ y: contentY }}
       >
-        {/* Enhanced ambient lighting */}
+        {/* Warm sunrise ambient lighting */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ 
-            opacity: 1, 
-            scale: 1,
-            rotate: 360
+          animate={{
+            opacity: 1,
+            scale: 1
           }}
           transition={{
             opacity: { duration: 1.2, delay: 0.8, ease: "easeOut" },
-            scale: { duration: 1.2, delay: 0.8, ease: "easeOut" },
-            rotate: { duration: 20, repeat: Infinity, ease: "linear" }
+            scale: { duration: 1.2, delay: 0.8, ease: "easeOut" }
           }}
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-gradient-conic from-purple-500/15 via-pink-500/20 to-purple-500/15 rounded-full blur-[150px] -z-10"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] rounded-full blur-[180px] -z-10"
+          style={{
+            background: 'radial-gradient(circle, rgba(247,147,30,0.25) 0%, rgba(255,107,53,0.15) 40%, transparent 70%)'
+          }}
         />
 
         <motion.div 
@@ -268,21 +277,26 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           <motion.span
             variants={{
               hidden: { opacity: 0, y: 30, scale: 0.9 },
-              visible: { 
-                opacity: 1, 
-                y: 0, 
+              visible: {
+                opacity: 1,
+                y: 0,
                 scale: 1,
-                transition: { 
-                  type: "spring", 
-                  stiffness: 150, 
-                  damping: 20 
+                transition: {
+                  type: "spring",
+                  stiffness: 150,
+                  damping: 20
                 }
               }
             }}
-            className="inline-block text-purple-400 font-medium text-xs sm:text-sm tracking-wide px-4 py-2 bg-gradient-to-r from-purple-500/15 via-pink-500/20 to-purple-500/15 rounded-full reveal reveal-delay-1 text-overline backdrop-blur-md border border-purple-400/20 shadow-lg"
-            whileHover={{ 
+            className="inline-block font-semibold text-xs sm:text-sm tracking-wider px-5 py-2.5 rounded-full reveal reveal-delay-1 backdrop-blur-sm border-2 shadow-lg uppercase"
+            style={{
+              color: '#FF6B35',
+              background: 'linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(247,147,30,0.15) 100%)',
+              borderColor: 'rgba(255,107,53,0.3)'
+            }}
+            whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 20px rgba(168, 85, 247, 0.3)",
+              boxShadow: "0 0 25px rgba(255, 107, 53, 0.4)",
               transition: { duration: 0.2 }
             }}
           >
@@ -292,35 +306,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           <motion.h1
             variants={{
               hidden: { opacity: 0, y: 40, scale: 0.95 },
-              visible: { 
-                opacity: 1, 
-                y: 0, 
+              visible: {
+                opacity: 1,
+                y: 0,
                 scale: 1,
-                transition: { 
-                  type: "spring", 
-                  stiffness: 120, 
-                  damping: 25 
+                transition: {
+                  type: "spring",
+                  stiffness: 120,
+                  damping: 25
                 }
               }
             }}
             className="text-display reveal reveal-delay-1"
+            style={{
+              fontFamily: 'var(--font-display)'
+            }}
           >
-            <motion.span 
-              className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              style={{
-                backgroundSize: "200% 200%"
-              }}
-            >
+            <span className="text-gradient">
               {t("heroTitle")}
-            </motion.span>
+            </span>
           </motion.h1>
 
           <motion.p
@@ -357,28 +361,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
             }}
             className="pt-3 sm:pt-4 md:pt-6 reveal reveal-delay-3"
           >
-            <motion.div 
-              className="gradient-border inline-block rounded-lg"
+            <motion.div
+              className="gradient-border inline-block rounded-xl"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <motion.button
                 onClick={scrollToDonationSection}
-                className="gb-inner inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 hover:from-purple-600 hover:via-pink-600 hover:to-purple-600 px-6 md:px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl text-white relative overflow-hidden"
+                className="gb-inner inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 md:px-10 py-4 md:py-5 rounded-xl font-bold transition-all duration-300 shadow-xl hover:shadow-2xl text-white relative overflow-hidden text-base md:text-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)'
+                }}
                 aria-label={t("heroButton")}
                 whileHover={{
-                  boxShadow: "0 0 30px rgba(168, 85, 247, 0.5)",
+                  boxShadow: "0 10px 40px rgba(255, 107, 53, 0.5)",
                   scale: 1.03
                 }}
                 whileTap={{ scale: 0.97 }}
               >
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
+                  className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.6 }}
                 />
-                <span className="relative z-10">{t("heroButton")}</span>
+                <span className="relative z-10 tracking-wide">{t("heroButton")}</span>
               </motion.button>
             </motion.div>
           </motion.div>
@@ -396,11 +403,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
           >
             <motion.button
               onClick={scrollToNextSection}
-              className="text-purple-400 hover:text-purple-300 transition-colors duration-300 relative touch-target group"
+              className="transition-colors duration-300 relative touch-target group"
+              style={{ color: '#FF6B35' }}
               aria-label={t("scrollDown") || "Scroll down"}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.1,
-                y: -2
+                y: -2,
+                color: '#F7931E'
               }}
               whileTap={{ scale: 0.95 }}
               animate={{
@@ -408,16 +417,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
               }}
               transition={{
                 y: {
-                  duration: 2,
+                  duration: 2.5,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }
               }}
             >
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-md"
+                className="absolute inset-0 rounded-full blur-md"
+                style={{
+                  background: 'radial-gradient(circle, rgba(255,107,53,0.2) 0%, transparent 70%)'
+                }}
               />
               <ArrowDown className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 relative z-10 drop-shadow-lg" />
             </motion.button>

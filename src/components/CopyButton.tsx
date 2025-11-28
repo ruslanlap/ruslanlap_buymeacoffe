@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 interface CopyButtonProps {
   value: string;
@@ -25,9 +26,16 @@ const CopyButton = ({ value, displayValue }: CopyButtonProps) => {
   };
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.98 }}
       onClick={handleCopy}
-      className="inline-flex items-center justify-center gap-2 bg-secondary/50 hover:bg-secondary/80 px-3 py-2 rounded-lg transition-all duration-300 w-full sm:w-auto h-10"
+      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 w-full sm:w-auto border-2 backdrop-blur-sm"
+      style={{
+        borderColor: 'rgba(255,107,53,0.4)',
+        background: 'rgba(255,107,53,0.1)',
+        color: '#FF6B35'
+      }}
       aria-label="Копіювати"
     >
       <span className="font-medium tracking-wide truncate">
@@ -36,9 +44,9 @@ const CopyButton = ({ value, displayValue }: CopyButtonProps) => {
       {copied ? (
         <Check className="h-4 w-4 text-green-400 flex-shrink-0" />
       ) : (
-        <Copy className="h-4 w-4 text-purple-300 flex-shrink-0" />
+        <Copy className="h-4 w-4 flex-shrink-0" style={{ color: '#FF6B35' }} />
       )}
-    </button>
+    </motion.button>
   );
 };
 

@@ -85,6 +85,7 @@ const Index: React.FC<IndexProps> = () => {
               }
             }}
           />
+
           
           {/* Enhanced background layers */}
           <BackgroundElements />
