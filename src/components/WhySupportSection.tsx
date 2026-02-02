@@ -20,25 +20,26 @@ const SupportReason = ({
 }: SupportReasonProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
+      transition={{ duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       viewport={{ once: true }}
       className="group relative"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-      <TiltSpotlightCard className="relative h-full p-6 bg-background/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl hover:border-purple-500/40 transition-all duration-300">
-        <div className="flex flex-col items-center text-center space-y-4">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-secondary/8 to-primary/8 rounded-3xl blur-2xl group-hover:blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      <TiltSpotlightCard className="relative h-full p-8 bg-background/60 backdrop-blur-md border border-border/50 rounded-3xl hover:border-primary/30 hover:shadow-saas-lg transition-all duration-500 group-hover:bg-background/70">
+        <div className="flex flex-col items-center text-center space-y-5">
           <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="p-4 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 rounded-full text-purple-400 group-hover:from-purple-500/30 group-hover:via-pink-500/30 group-hover:to-purple-500/30 transition-all duration-300"
+            whileHover={{ scale: 1.15, rotate: 5 }}
+            transition={{ duration: 0.3 }}
+            className="p-5 bg-gradient-to-br from-primary/15 via-secondary/15 to-primary/15 rounded-2xl text-primary group-hover:from-primary/25 group-hover:via-secondary/25 group-hover:to-primary/25 group-hover:shadow-glow-primary transition-all duration-500"
           >
             {icon}
           </motion.div>
-          <h3 className="text-h3 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
             {title}
           </h3>
-          <p className="text-body text-muted-foreground line-clamp-3 sm:line-clamp-none">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed line-clamp-3 sm:line-clamp-none">
             {description}
           </p>
         </div>
@@ -55,14 +56,14 @@ const WhySupportSection = () => {
     <section
       id="why-support"
       ref={sectionRef}
-      className="py-16 sm:py-20 px-4 relative overflow-hidden"
+      className="py-20 sm:py-24 md:py-32 px-4 relative overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent"
       />
 
       <div className="max-w-7xl mx-auto relative">
@@ -71,14 +72,14 @@ const WhySupportSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-16 sm:mb-20"
         >
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="inline-block text-purple-400 font-medium tracking-wide px-3 py-1 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-full mb-4 backdrop-blur-sm"
+            className="inline-block text-primary font-semibold tracking-widest px-5 py-2.5 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 rounded-full mb-6 backdrop-blur-md border border-primary/20 text-xs sm:text-sm uppercase shadow-saas"
           >
             {t("whySupportTitle")}
           </motion.span>
@@ -88,9 +89,13 @@ const WhySupportSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-            className="text-h1 mb-4 sm:mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 sm:mb-8"
+            style={{
+              fontFamily: 'var(--font-display)',
+              letterSpacing: '-0.02em'
+            }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
               {t("whySupportTitle")}
             </span>
           </motion.h2>
@@ -100,13 +105,13 @@ const WhySupportSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
             viewport={{ once: true }}
-            className="text-body text-muted-foreground max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             {t("whySupportSubtitle")}
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           <SupportReason
             icon={<Rocket className="h-8 w-8" />}
             title={t("reasonProjectDevelopment")}

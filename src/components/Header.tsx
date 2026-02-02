@@ -40,26 +40,33 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const scrollToDonation = () => {
+    const donateSection = document.getElementById("donate");
+    if (donateSection) {
+      donateSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
-      className={`w-full z-50 sticky top-0 transition-all duration-300 mobile-safe-area ${
+      className={`w-full z-50 sticky top-0 transition-all duration-500 mobile-safe-area ${
         scrolled
-          ? "backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-background/80 border-b border-border/50 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.35)]"
+          ? "backdrop-blur-xl supports-[backdrop-filter]:bg-background/70 bg-background/80 border-b border-border/40 shadow-saas-lg"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center py-2 sm:py-3 px-3 sm:px-4">
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6">
         {/* Left Section - Buttons */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           {/* Report Bug Button */}
           <Button
             variant="ghost"
             size="icon"
             onClick={handleReportBug}
-            className="h-10 w-10 sm:h-12 sm:w-auto sm:px-4 sm:py-2 rounded-md transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="h-10 w-10 sm:h-11 sm:w-auto sm:px-4 rounded-lg transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50"
             aria-label={t("reportBugButton")}
           >
-            <Bug className="h-5 w-5 sm:mr-2" />
+            <Bug className="h-4 w-4 sm:h-5 sm:w-5 sm:mr-2" />
             <span className="hidden sm:inline text-sm font-medium">
               {t("reportBugButton")}
             </span>
@@ -70,25 +77,33 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={handleSuggestChange}
-            className="h-10 w-10 sm:h-12 sm:w-auto sm:px-4 sm:py-2 rounded-md transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="h-10 w-10 sm:h-11 sm:w-auto sm:px-4 rounded-lg transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50"
             aria-label={t("suggestChangeButton")}
           >
-            <Lightbulb className="h-5 w-5 sm:mr-2" />
+            <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 sm:mr-2" />
             <span className="hidden sm:inline text-sm font-medium">
               {t("suggestChangeButton")}
             </span>
           </Button>
         </div>
 
-        {/* Right Section - Toggles */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        {/* Right Section - CTA + Toggles */}
+        <div className="flex items-center space-x-2 sm:space-x-4">
+          {/* Primary CTA Button */}
+          <Button
+            onClick={scrollToDonation}
+            className="hidden md:inline-flex h-11 px-6 rounded-lg font-semibold text-sm bg-gradient-to-r from-primary to-secondary hover:shadow-glow-primary transition-all duration-300 hover:scale-105 text-white"
+          >
+            {t("heroButton") || "Get Started"}
+          </Button>
+
           {/* Language Toggle */}
-          <div className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-md transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+          <div className="h-10 w-10 sm:h-11 sm:w-11 flex items-center justify-center rounded-lg transition-all duration-300 hover:bg-muted hover:scale-105">
             <LanguageToggle />
           </div>
 
           {/* Theme Toggle */}
-          <div className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-md transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+          <div className="h-10 w-10 sm:h-11 sm:w-11 flex items-center justify-center rounded-lg transition-all duration-300 hover:bg-muted hover:scale-105">
             <ThemeToggle />
           </div>
         </div>

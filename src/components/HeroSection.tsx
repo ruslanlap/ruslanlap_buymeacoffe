@@ -288,16 +288,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
                 }
               }
             }}
-            className="inline-block font-semibold text-xs sm:text-sm tracking-wider px-5 py-2.5 rounded-full reveal reveal-delay-1 backdrop-blur-sm border-2 shadow-lg uppercase"
+            className="inline-block font-semibold text-xs sm:text-sm tracking-widest px-6 py-3 rounded-full reveal reveal-delay-1 backdrop-blur-md border shadow-saas uppercase"
             style={{
               color: '#FF6B35',
-              background: 'linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(247,147,30,0.15) 100%)',
-              borderColor: 'rgba(255,107,53,0.3)'
+              background: 'linear-gradient(135deg, rgba(255,107,53,0.12) 0%, rgba(247,147,30,0.18) 100%)',
+              borderColor: 'rgba(255,107,53,0.25)'
             }}
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 25px rgba(255, 107, 53, 0.4)",
-              transition: { duration: 0.2 }
+              boxShadow: "0 0 30px rgba(255, 107, 53, 0.5)",
+              transition: { duration: 0.3 }
             }}
           >
             {t("withLove")}
@@ -317,9 +317,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
                 }
               }
             }}
-            className="text-display reveal reveal-delay-1"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight reveal reveal-delay-1"
             style={{
-              fontFamily: 'var(--font-display)'
+              fontFamily: 'var(--font-display)',
+              letterSpacing: '-0.03em'
             }}
           >
             <span className="text-gradient">
@@ -340,7 +341,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
                 }
               }
             }}
-            className="text-body-sm sm:text-body md:text-body-lg text-muted-foreground max-w-2xl mx-auto reveal reveal-delay-2 break-words leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto reveal reveal-delay-2 break-words leading-relaxed font-normal"
+            style={{
+              lineHeight: '1.7'
+            }}
           >
             {t("heroSubtitle")}
           </motion.p>
@@ -362,20 +366,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
             className="pt-3 sm:pt-4 md:pt-6 reveal reveal-delay-3"
           >
             <motion.div
-              className="gradient-border inline-block rounded-xl"
-              whileHover={{ scale: 1.02 }}
+              className="gradient-border inline-block rounded-2xl"
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
               <motion.button
                 onClick={scrollToDonationSection}
-                className="gb-inner inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 md:px-10 py-4 md:py-5 rounded-xl font-bold transition-all duration-300 shadow-xl hover:shadow-2xl text-white relative overflow-hidden text-base md:text-lg"
+                className="gb-inner inline-flex items-center justify-center w-full sm:w-auto gap-2 px-10 md:px-12 py-5 md:py-6 rounded-2xl font-bold transition-all duration-300 shadow-saas-xl hover:shadow-saas-2xl text-white relative overflow-hidden text-base md:text-lg"
                 style={{
-                  background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)'
+                  background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)',
+                  letterSpacing: '0.01em'
                 }}
                 aria-label={t("heroButton")}
                 whileHover={{
-                  boxShadow: "0 10px 40px rgba(255, 107, 53, 0.5)",
-                  scale: 1.03
+                  boxShadow: "0 20px 60px rgba(255, 107, 53, 0.6)",
+                  scale: 1.05
                 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -385,7 +390,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ children }) => {
                   whileHover={{ x: "100%" }}
                   transition={{ duration: 0.6 }}
                 />
-                <span className="relative z-10 tracking-wide">{t("heroButton")}</span>
+                <span className="relative z-10 font-semibold">{t("heroButton")}</span>
               </motion.button>
             </motion.div>
           </motion.div>

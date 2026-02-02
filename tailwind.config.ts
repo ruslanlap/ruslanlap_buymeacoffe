@@ -138,6 +138,17 @@ export default {
         "drop-shadow-md": "drop-shadow(0 0 5px rgba(168, 85, 247, 0.7))",
         "drop-shadow-xl": "drop-shadow(0 0 10px rgba(168, 85, 247, 0.9))",
       },
+      // Professional SaaS shadows
+      boxShadow: {
+        'saas-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        'saas': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'saas-md': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        'saas-lg': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        'saas-xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        'saas-2xl': '0 30px 60px -15px rgba(0, 0, 0, 0.3)',
+        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+        'glow-primary': '0 0 20px rgba(255, 107, 53, 0.3), 0 0 40px rgba(247, 147, 30, 0.2)',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
