@@ -6,6 +6,7 @@ interface TiltSpotlightCardProps {
   className?: string;
   spotlightOpacity?: number; // 0..1
   maxTilt?: number; // degrees
+  style?: React.CSSProperties;
 }
 
 const TiltSpotlightCard: React.FC<TiltSpotlightCardProps> = ({
@@ -13,6 +14,7 @@ const TiltSpotlightCard: React.FC<TiltSpotlightCardProps> = ({
   className,
   spotlightOpacity = 0.22,
   maxTilt = 8,
+  style,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovering, setHovering] = useState(false);
@@ -50,8 +52,8 @@ const TiltSpotlightCard: React.FC<TiltSpotlightCardProps> = ({
     pointerEvents: "none",
     opacity: isHovering && enabled ? 1 : 0,
     transition: "opacity 200ms ease",
-    background: `radial-gradient(300px circle at ${coords.x * 100}% ${coords.y * 100}%, rgba(168,85,247,${spotlightOpacity}), transparent 45%)`,
-    mixBlendMode: "screen",
+    background: `radial-gradient(circle 300px at ${coords.x * 100}% ${coords.y * 100}%, rgba(255,107,53,${spotlightOpacity}), transparent 80%)`,
+    mixBlendMode: "plus-lighter" as any,
   };
 
   return (
@@ -60,7 +62,7 @@ const TiltSpotlightCard: React.FC<TiltSpotlightCardProps> = ({
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onMouseMove={handleMove}
-      style={{ transform }}
+      style={{ ...style, transform }}
       transition={{ type: "spring", stiffness: 200, damping: 20, mass: 0.4 }}
       className={className}
     >

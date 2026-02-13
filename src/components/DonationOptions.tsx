@@ -41,7 +41,8 @@ const DonationCard = ({
       />
       <TiltSpotlightCard className="relative p-8 bg-background/80 backdrop-blur-sm border-2 rounded-3xl transition-all duration-300"
         style={{
-          borderColor: 'rgba(255,107,53,0.2)'
+          borderColor: 'rgba(255,107,53,0.2)',
+          WebkitBackdropFilter: 'blur(4px)'
         }}
       >
         <div className="flex flex-col sm:flex-row items-start gap-6">
@@ -135,7 +136,8 @@ const DonationOptions = () => {
             style={{
               color: '#FF6B35',
               background: 'linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(247,147,30,0.15) 100%)',
-              borderColor: 'rgba(255,107,53,0.3)'
+              borderColor: 'rgba(255,107,53,0.3)',
+              WebkitBackdropFilter: 'blur(4px)'
             }}
           >
             {t("donationOptionsTitle")}

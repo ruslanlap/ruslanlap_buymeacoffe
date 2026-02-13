@@ -49,11 +49,11 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full z-50 sticky top-0 transition-all duration-500 mobile-safe-area ${
-        scrolled
+      className={`w-full z-50 sticky top-0 transition-all duration-500 mobile-safe-area ${scrolled
           ? "backdrop-blur-xl supports-[backdrop-filter]:bg-background/70 bg-background/80 border-b border-border/40 shadow-saas-lg"
           : "bg-transparent"
-      }`}
+        }`}
+      style={{ WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none' }}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6">
         {/* Left Section - Buttons */}

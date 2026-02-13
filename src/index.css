@@ -165,6 +165,7 @@ body {
     scroll-behavior: smooth;
     /* Enhanced scrolling performance */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
   }
 
   /* Fluid Typography - scales between mobile and desktop */
@@ -351,6 +352,7 @@ body {
   /* Enhanced glass morphism with better performance */
   .glass-card {
     @apply backdrop-blur-md bg-white/5 dark:bg-white/5 border border-white/10;
+    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.3);
     transform: translateZ(0);
     backface-visibility: hidden;

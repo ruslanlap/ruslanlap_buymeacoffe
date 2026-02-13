@@ -38,7 +38,7 @@ const Index: React.FC<IndexProps> = () => {
 
     // Performance-optimized debounced scroll handler
     const debouncedHandleScroll = debounce(handleScroll, 16); // 60fps
-    
+
     // Use passive listener for better performance
     window.addEventListener("scroll", debouncedHandleScroll, { passive: true });
 
@@ -65,7 +65,7 @@ const Index: React.FC<IndexProps> = () => {
   return (
     <LanguageProvider>
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -73,8 +73,8 @@ const Index: React.FC<IndexProps> = () => {
           className="min-h-screen bg-background text-foreground overflow-hidden gpu-accelerated"
         >
           {/* Toast notifications with enhanced styling */}
-          <Toaster 
-            position="top-center" 
+          <Toaster
+            position="top-center"
             toastOptions={{
               duration: 4000,
               style: {
@@ -86,11 +86,11 @@ const Index: React.FC<IndexProps> = () => {
             }}
           />
 
-          
+
           {/* Enhanced background layers */}
           <BackgroundElements />
           <AnimatedBackground />
-          
+
           {/* Header with smooth entrance */}
           <motion.div
             initial={{ y: -100, opacity: 0 }}
@@ -99,7 +99,7 @@ const Index: React.FC<IndexProps> = () => {
           >
             <Header />
           </motion.div>
-          
+
           {/* Page content with staggered animations */}
           <motion.main
             initial="hidden"
@@ -123,34 +123,7 @@ const Index: React.FC<IndexProps> = () => {
             >
               <HeroSection />
             </motion.div>
-            
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-              }}
-            >
-              <WhySupportSection />
-            </motion.div>
-            
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-              }}
-            >
-              <FeedbackSection />
-            </motion.div>
-            
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, scale: 0.9 },
-                visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
-              }}
-            >
-              <Stars />
-            </motion.div>
-            
+
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 40 },
@@ -159,7 +132,34 @@ const Index: React.FC<IndexProps> = () => {
             >
               <DonationOptions />
             </motion.div>
-            
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+              }}
+            >
+              <WhySupportSection />
+            </motion.div>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+              }}
+            >
+              <FeedbackSection />
+            </motion.div>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, scale: 0.9 },
+                visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
+              }}
+            >
+              <Stars />
+            </motion.div>
+
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 40 },
@@ -168,7 +168,7 @@ const Index: React.FC<IndexProps> = () => {
             >
               <AboutSection />
             </motion.div>
-            
+
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 20 },
@@ -215,7 +215,7 @@ function debounce<T extends unknown[]>(func: (...args: T) => void, wait: number)
         return invokeFunc(lastCallTime);
       }
     }
-    
+
     if (timeout === undefined) {
       timeout = setTimeout(() => {
         timeout = undefined;
@@ -224,7 +224,7 @@ function debounce<T extends unknown[]>(func: (...args: T) => void, wait: number)
         }
       }, wait);
     }
-    
+
     return result;
   };
 }

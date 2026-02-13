@@ -34,7 +34,8 @@ const CopyButton = ({ value, displayValue }: CopyButtonProps) => {
       style={{
         borderColor: 'rgba(255,107,53,0.4)',
         background: 'rgba(255,107,53,0.1)',
-        color: '#FF6B35'
+        color: '#FF6B35',
+        WebkitBackdropFilter: 'blur(4px)'
       }}
       aria-label="Копіювати"
     >

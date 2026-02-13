@@ -27,7 +27,9 @@ const SupportReason = ({
       className="group relative"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-secondary/8 to-primary/8 rounded-3xl blur-2xl group-hover:blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
-      <TiltSpotlightCard className="relative h-full p-8 bg-background/60 backdrop-blur-md border border-border/50 rounded-3xl hover:border-primary/30 hover:shadow-saas-lg transition-all duration-500 group-hover:bg-background/70">
+      <TiltSpotlightCard className="relative h-full p-8 bg-background/60 backdrop-blur-md border border-border/50 rounded-3xl hover:border-primary/30 hover:shadow-saas-lg transition-all duration-500 group-hover:bg-background/70"
+        style={{ WebkitBackdropFilter: 'blur(12px)' }}
+      >
         <div className="flex flex-col items-center text-center space-y-5">
           <motion.div
             whileHover={{ scale: 1.15, rotate: 5 }}

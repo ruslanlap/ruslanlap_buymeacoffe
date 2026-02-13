@@ -30,7 +30,9 @@ const FeedbackCard = ({
       className="group relative"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-      <div className="relative h-full p-6 bg-background/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl hover:border-purple-500/40 transition-all duration-300">
+      <div className="relative h-full p-6 bg-background/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl hover:border-purple-500/40 transition-all duration-300"
+        style={{ WebkitBackdropFilter: 'blur(4px)' }}
+      >
         <div className="flex flex-col items-center text-center space-y-4">
           <motion.div
             whileHover={{ scale: 1.1 }}
