@@ -1,4 +1,4 @@
-import { CreditCard, Landmark } from "lucide-react";
+import { Landmark } from "lucide-react";
 import { useRef } from "react";
 import CopyButton from "./CopyButton";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -182,15 +182,6 @@ const DonationOptions = () => {
             delay={0.8}
           />
 
-          <DonationCard
-            icon={<CreditCard className="h-7 w-7" />}
-            title={t("paypalTitle")}
-            description={t("paypalDesc")}
-            buttonText={t("supportViaPaypal")}
-            buttonUrl="mailto:lapin@ucu.edu.ua"
-            copyValue="lapin@ucu.edu.ua"
-            delay={1}
-          />
         </div>
 
         <motion.div

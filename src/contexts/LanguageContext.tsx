@@ -20,10 +20,7 @@ export type TranslationKey =
   | "donationOptionsSubtitle"
   | "monobankTitle"
   | "monobankDesc"
-  | "paypalTitle"
-  | "paypalDesc"
   | "supportViaMonobank"
-  | "supportViaPaypal"
   | "aboutTitle"
   | "aboutSubtitle"
   | "aboutParagraph1"
@@ -90,11 +87,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     monobankTitle: "Блискавичний Monobank",
     monobankDesc:
       "Швидкий та інтуїтивний шлях підтримати проєкт – мінімум кліків, максимум користі.",
-    paypalTitle: "Глобальний PayPal",
-    paypalDesc:
-      "Ідеальне рішення для міжнародної спільноти – без кордонів, комісій та затримок.",
     supportViaMonobank: "Підтримати через Mono",
-    supportViaPaypal: "Доєднатися через PayPal",
 
     // Секція "Про мене"
     aboutTitle: "Привіт, мене звати Руслан,",
@@ -162,11 +155,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     monobankTitle: "Swift Monobank",
     monobankDesc:
       "Experience the seamless way to contribute – minimal clicks, maximum impact on our shared vision.",
-    paypalTitle: "Borderless PayPal",
-    paypalDesc:
-      "Perfect for our international community – support without boundaries, fees, or delays.",
     supportViaMonobank: "Contribute via Mono",
-    supportViaPaypal: "Connect through PayPal",
 
     // About Me section
     aboutTitle: "The Creator's Journey",
