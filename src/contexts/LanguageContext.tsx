@@ -191,7 +191,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
 
     footerDescription:
       "Зроблено незалежно для дизайнерів і розробників. Дякую кожному, хто підтримує проєкт.",
-    footerRights: "Руслан Лаптєв",
+    footerRights: "ruslanlap",
     footerSupportLink: "Підтримати",
     footerFeedbackLink: "Зворотний зв’язок",
   },
@@ -298,7 +298,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
 
     footerDescription:
       "Built independently for designers and frontend engineers. Thank you for supporting open tooling.",
-    footerRights: "Ruslan Laptev",
+    footerRights: "ruslanlap",
     footerSupportLink: "Support",
     footerFeedbackLink: "Feedback",
   },
