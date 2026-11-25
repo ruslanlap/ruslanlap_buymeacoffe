@@ -1,4 +1,3 @@
-import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,7 +5,6 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import ScrollProgress from "@/components/ScrollProgress";
 
 const queryClient = new QueryClient();
 
@@ -14,13 +12,19 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TooltipProvider>
-        <ScrollProgress />
-        <Toaster />
-        <Sonner />
+        <Sonner
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+            classNames: {
+              toast:
+                "bg-card text-card-foreground border border-border shadow-studio font-sans text-sm",
+            },
+          }}
+        />
         <HashRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

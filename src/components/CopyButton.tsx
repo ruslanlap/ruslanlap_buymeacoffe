@@ -1,53 +1,49 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface CopyButtonProps {
   value: string;
-  displayValue?: string;
 }
 
-const CopyButton = ({ value, displayValue }: CopyButtonProps) => {
+const CopyButton = ({ value }: CopyButtonProps) => {
   const [copied, setCopied] = useState(false);
+  const { t } = useLanguage();
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(value);
       setCopied(true);
-      toast.success("Скопійовано!");
+      toast.success(t("copiedToast"));
 
       setTimeout(() => {
         setCopied(false);
       }, 2000);
-    } catch (err) {
-      toast.error("Помилка копіювання");
+    } catch {
+      toast.error(t("copyErrorToast"));
     }
   };
 
   return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.98 }}
+    <button
+      type="button"
       onClick={handleCopy}
-      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 w-full sm:w-auto border-2 backdrop-blur-sm"
-      style={{
-        borderColor: 'rgba(255,107,53,0.4)',
-        background: 'rgba(255,107,53,0.1)',
-        color: '#FF6B35',
-        WebkitBackdropFilter: 'blur(4px)'
-      }}
-      aria-label="Копіювати"
+      aria-label={copied ? t("copiedBtn") : t("copyBtn")}
+      className="inline-flex items-center justify-center gap-1.5 h-9 px-3 rounded-lg border border-border bg-card hover:bg-muted text-foreground text-xs font-medium transition-colors shrink-0"
     >
-      <span className="font-medium tracking-wide truncate">
-        {displayValue || value}
-      </span>
       {copied ? (
-        <Check className="h-4 w-4 text-green-400 flex-shrink-0" />
+        <>
+          <Check className="h-3.5 w-3.5 text-emerald-500" />
+          <span>{t("copiedBtn")}</span>
+        </>
       ) : (
-        <Copy className="h-4 w-4 flex-shrink-0" style={{ color: '#FF6B35' }} />
+        <>
+          <Copy className="h-3.5 w-3.5 text-muted-foreground" />
+          <span>{t("copyBtn")}</span>
+        </>
       )}
-    </motion.button>
+    </button>
   );
 };
 

@@ -1,39 +1,74 @@
-import { Heart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import logoIcon from "../img/icon384.png";
+
+const GITHUB_URL = "https://github.com/ruslanlap";
+const FIREFOX_ADDON_URL =
+  "https://addons.mozilla.org/en-US/firefox/addon/svg-extractor-pro/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { t } = useLanguage();
 
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <footer className="py-16 sm:py-20 px-4 border-t border-border/30 bg-gradient-to-b from-transparent to-muted/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xl sm:text-2xl font-semibold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
-            {t("footerThankYou")}
-          </p>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+    <footer className="border-t border-border py-10 sm:py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="space-y-2 max-w-md">
+          <div className="flex items-center gap-2">
+            <img
+              src={logoIcon}
+              alt={t("logoAlt")}
+              className="w-5 h-5 rounded ring-1 ring-border"
+            />
+            <span className="font-mono text-xs font-medium text-foreground">
+              ruslanlap / svg-extractor-pro
+            </span>
+          </div>
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             {t("footerDescription")}
+          </p>
+          <p className="font-mono text-xs text-muted-foreground">
+            © {currentYear} {t("footerRights")}
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-border/30">
-          <p className="text-sm text-muted-foreground order-2 md:order-1">
-            © {currentYear} {t("footerRights")}
-          </p>
-
-          <div className="flex items-center gap-2 text-sm order-1 md:order-2">
-            <span className="text-muted-foreground">{t("footerCreatedWith")}</span>
-            <Heart className="h-4 w-4 text-primary mx-1 animate-pulse" />
-            <a
-              href="https://github.com/ruslanlap"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-secondary transition-all duration-300 underline underline-offset-2 font-semibold hover:scale-105 inline-block"
-            >
-              {t("footerBy")}
-            </a>
-          </div>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-mono text-muted-foreground">
+          <button
+            type="button"
+            onClick={() => scrollTo("donate")}
+            className="hover:text-foreground transition-colors"
+          >
+            {t("footerSupportLink")}
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollTo("feedback")}
+            className="hover:text-foreground transition-colors"
+          >
+            {t("footerFeedbackLink")}
+          </button>
+          <a
+            href={FIREFOX_ADDON_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            Firefox Add-on
+          </a>
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            GitHub
+          </a>
         </div>
       </div>
     </footer>

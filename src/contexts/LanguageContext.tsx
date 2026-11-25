@@ -1,222 +1,353 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-// Визначення доступних мов
 export type Language = "uk" | "en";
 
-// Ключі перекладів
 export type TranslationKey =
+  | "logoAlt"
+  | "navSupport"
+  | "navImpact"
+  | "navCommunity"
+  | "navAbout"
+  | "headerSupportBtn"
+  | "heroBadge"
   | "heroTitle"
+  | "heroTitleMuted"
   | "heroSubtitle"
-  | "heroButton"
-  | "whySupportTitle"
-  | "whySupportSubtitle"
-  | "reasonProjectDevelopment"
-  | "reasonProjectDevelopmentDesc"
-  | "reasonContentCreation"
-  | "reasonContentCreationDesc"
-  | "reasonCreativitySupport"
-  | "reasonCreativitySupportDesc"
-  | "donationOptionsTitle"
-  | "donationOptionsSubtitle"
+  | "heroPrimaryCta"
+  | "heroSecondaryCta"
+  | "heroStat1"
+  | "heroStat2"
+  | "heroStat3"
+  | "specimenLabel"
+  | "specimenStatus"
+  | "donateKicker"
+  | "donateTitle"
+  | "donateSubtitle"
+  | "monoBadge"
   | "monobankTitle"
   | "monobankDesc"
   | "supportViaMonobank"
+  | "tier1"
+  | "tier2"
+  | "tier3"
+  | "cardLabel"
+  | "copyBtn"
+  | "copiedBtn"
+  | "copiedToast"
+  | "copyErrorToast"
+  | "scanToDonate"
+  | "qrCodeDescription"
+  | "openJarLink"
+  | "whyKicker"
+  | "whySupportTitle"
+  | "whySupportSubtitle"
+  | "reason1Tag"
+  | "reasonProjectDevelopment"
+  | "reasonProjectDevelopmentDesc"
+  | "reason2Tag"
+  | "reasonContentCreation"
+  | "reasonContentCreationDesc"
+  | "reason3Tag"
+  | "reasonCreativitySupport"
+  | "reasonCreativitySupportDesc"
+  | "communityKicker"
+  | "communityTitle"
+  | "communitySubtitle"
+  | "reviewsBadge"
+  | "reviewsTitle"
+  | "reviewsDescription"
+  | "leaveReview"
+  | "reportBugTag"
+  | "reportBugTitle"
+  | "reportBugDesc"
+  | "reportBugButton"
+  | "suggestChangeTag"
+  | "suggestChangeTitle"
+  | "suggestChangeDesc"
+  | "suggestChangeButton"
+  | "aboutKicker"
   | "aboutTitle"
   | "aboutSubtitle"
   | "aboutParagraph1"
   | "aboutParagraph2"
   | "aboutParagraph3"
-  | "footerThankYou"
+  | "specProjectLabel"
+  | "specProjectValue"
+  | "specPlatformLabel"
+  | "specPlatformValue"
+  | "specModelLabel"
+  | "specModelValue"
+  | "specAuthorLabel"
+  | "specAuthorValue"
+  | "specJarLabel"
+  | "githubProfileBtn"
+  | "firefoxAddonBtn"
   | "footerDescription"
   | "footerRights"
-  | "footerCreatedWith"
-  | "reportBugTitle"
-  | "reportBugDesc"
-  | "suggestChangeTitle"
-  | "suggestChangeDesc"
-  | "reportBugButton"
-  | "suggestChangeButton"
-  | "reviewsTitle"
-  | "reviewsDescription"
-  | "leaveReview"
-  | "scanToDonate"
-  | "qrCodeDescription"
-  | "footerBy"
-  | "logoAlt"
-  | "withLove"
-  | "scrollDown"
-  | "feedbackTitle"
-  | "feedbackSubtitle";
+  | "footerSupportLink"
+  | "footerFeedbackLink";
 
-// Об'єкт з перекладами
 const translations: Record<Language, Record<TranslationKey, string>> = {
   uk: {
-    // Загальні елементи
-    logoAlt: "Логотип сайту",
-    // Кнопки повідомлення про помилку та пропозиції змін
-    reportBugButton: "Знайшли помилку? Розкажіть нам",
-    suggestChangeButton: "Маєте ідею? Поділіться нею",
-    footerBy: "by ruslanlap",
-    scrollDown: "Прокрутити вниз",
-    withLove: "З любов'ю для вас 💜",
+    logoAlt: "Логотип SVG Extractor Pro",
+    navSupport: "Підтримати",
+    navImpact: "На що йдуть кошти",
+    navCommunity: "Відгуки",
+    navAbout: "Про автора",
+    headerSupportBtn: "Пригостити кавою",
 
-    // Секція "Герой"
-    heroTitle: "Підтримайте мою роботу!",
+    heroBadge: "Незалежний open-source проєкт",
+    heroTitle: "Підтримайте розвиток",
+    heroTitleMuted: "SVG Extractor Pro та корисних утиліт.",
     heroSubtitle:
-      "Ваш внесок живить інновації та дозволяє втілювати найсміливіші ідеї в життя. Кожна гривня — це велика підтрика для створення нових проєктів!",
-    heroButton: "Долучитися зараз",
+      "Безкоштовне розширення без реклами, трекерів і підписок. Якщо інструмент економить ваш час у щоденній роботі — ви можете підтримати його подальший розвиток.",
+    heroPrimaryCta: "Підтримати через Monobank",
+    heroSecondaryCta: "Встановити для Firefox",
+    heroStat1: "0 трекерів",
+    heroStat2: "100% безкоштовно",
+    heroStat3: "Активна підтримка",
+    specimenLabel: "VECTOR SPECIMEN",
+    specimenStatus: "ГОТОВО ДО ЕКСПОРТУ",
 
-    // Секція "Чому варто підтримати"
-    whySupportTitle: "Що дає ваша підтримка",
-    whySupportSubtitle:
-      "Ми перетворюємо ваш внесок на позитивні зміни та можливості для неймовірних проєктів.",
-    reasonProjectDevelopment: "Інновації та масштабування",
-    reasonProjectDevelopmentDesc:
-      "З вашою допомогою ми експериментуємо з новими технологіями, впроваджуємо сміливі ідеї та розширюємо межі можливого.",
-    reasonContentCreation: "Натхнення для творчості",
-    reasonContentCreationDesc:
-      "Ваші донати звільняють час для створення унікального контенту, який надихає, інформує та відкриває нові горизонти.",
-    reasonCreativitySupport: "Енергія для змін",
-    reasonCreativitySupportDesc:
-      "Ваша віра в проєкт надихає щодня долати нові вершини та ділитися знаннями, які змінюють світогляд.",
-
-    // Секція "Підтримка роботи"
-    donationOptionsTitle: "Як ви можете допомогти",
-    donationOptionsSubtitle:
-      "Обирайте свій шлях підтримки – від блискавичного переказу до міжнародної допомоги!",
-    monobankTitle: "Блискавичний Monobank",
+    donateKicker: "01 / ПІДТРИМКА",
+    donateTitle: "Прямий внесок без посередників",
+    donateSubtitle:
+      "Оберіть зручний спосіб: миттєве поповнення банки Monobank, переказ за номером картки або сканування QR-коду.",
+    monoBadge: "MONOBANK JAR",
+    monobankTitle: "Поповнити банку Monobank",
     monobankDesc:
-      "Швидкий та інтуїтивний шлях підтримати проєкт – мінімум кліків, максимум користі.",
-    supportViaMonobank: "Підтримати через Mono",
-
-    // Секція "Про мене"
-    aboutTitle: "Привіт, мене звати Руслан,",
-    aboutSubtitle: "ось мій шлях і філософія",
-    aboutParagraph1:
-      "Я поєдную розробку з мистецтвом творення, щоб створювати проєкти, які не лише розважають, але й вирішують реальні виклики.",
-    aboutParagraph2:
-      "Моя місія — трансформувати ідеї в живі проєкти, що служать спільноті. Кожен внесок розпалює полум'я творчості та відкриває нові можливості.",
-    aboutParagraph3:
-      "З вашою підтримкою я можу фокусуватися на найголовнішому: інноваціях, якості та спільноті. Разом ми не просто створюємо продукт — ми формуємо культуру!",
-
-    footerThankYou: "Вдячний за вашу підтримку!",
-    footerDescription:
-      "Кожен ваш внесок — це для мене мотивація розвивати проєкти і вкладати час у розробу нових продуктів",
-    footerRights: "Захищено авторським правом",
-    footerCreatedWith: "Зроблено з натхненням",
-
-    // Секція зворотного зв'язку
-    feedbackTitle: "Зворотний зв'язок",
-    feedbackSubtitle: "Повідомте нас про будь-які проблеми або пропозиції змін",
-    reportBugTitle: "Помітили недолік?",
-    reportBugDesc:
-      "Ваша уважність допомагає нам удосконалюватись — розкажіть про технічні проблеми, з якими ви зіткнулись.",
-    suggestChangeTitle: "Бачите потенціал?",
-    suggestChangeDesc:
-      "Ваші свіжі ідеї та креативні пропозиції — безцінний ресурс для розвитку проєкту!",
-
-    // Відгуки
-    reviewsTitle: "Ваша оцінка та відгук важливі для мене",
-    reviewsDescription:
-      "Кожен відгук — це компас, що направляє наш розвиток у правильному напрямку!",
-    leaveReview: "Поділитися враженнями",
-    scanToDonate: "Скануйте для підтримки",
+      "Підтримує Apple Pay, Google Pay та картки будь-яких банків. Кожна чашка кави безпосередньо фінансує час на оновлення та нові функції.",
+    supportViaMonobank: "Відкрити банку Monobank",
+    tier1: "☕ На еспресо",
+    tier2: "⚡ На нову фічу",
+    tier3: "🛠 Підтримка релізів",
+    cardLabel: "НОМЕР КАРТКИ ДЛЯ ПЕРЕКАЗУ",
+    copyBtn: "Копіювати",
+    copiedBtn: "Скопійовано",
+    copiedToast: "Номер картки скопійовано",
+    copyErrorToast: "Не вдалося скопіювати номер",
+    scanToDonate: "Швидкий переказ за QR",
     qrCodeDescription:
-      "Один QR-код відкриває шлях до підтримки нашого бачення – так само просто, як насолоджуватися кавою!",
+      "Наведіть камеру телефону або відкрийте застосунок банку, щоб миттєво перейти до банки.",
+    openJarLink: "Перейти за посиланням",
+
+    whyKicker: "02 / НА ЩО ЙДЕ ПІДТРИМКА",
+    whySupportTitle: "Прозора користь від кожного внеску",
+    whySupportSubtitle:
+      "Усі донати допомагають зберігати інструмент швидким, незалежним і відкритим для спільноти.",
+    reason1Tag: "ПІДТРИМКА",
+    reasonProjectDevelopment: "Оновлення та сумісність",
+    reasonProjectDevelopmentDesc:
+      "Регулярна адаптація під нові версії браузерів, виправлення крайових випадків та оптимізація парсингу складних SVG-дерев.",
+    reason2Tag: "НЕЗАЛЕЖНІСТЬ",
+    reasonContentCreation: "Без реклами і пейволів",
+    reasonContentCreationDesc:
+      "Ваша підтримка дозволяє залишати всі ключові можливості безкоштовними без нав’язливих банерів, телеметрії та продажів даних.",
+    reason3Tag: "РОЗВИТОК",
+    reasonCreativitySupport: "Нові функції та інструменти",
+    reasonCreativitySupportDesc:
+      "Пріоритизація побажань користувачів, покращення експорту та створення супутніх міні-утиліт для дизайнерів і фронтенд-розробників.",
+
+    communityKicker: "03 / СПІЛЬНОТА ТА ЗВОРОТНИЙ ЗВ’ЯЗОК",
+    communityTitle: "Допоможіть зробити інструмент кращим",
+    communitySubtitle:
+      "Оцінка в каталозі Firefox або короткий звіт про помилку допомагають проєкту не менше за фінансовий внесок.",
+    reviewsBadge: "FIREFOX ADD-ONS",
+    reviewsTitle: "Користуєтесь SVG Extractor Pro?",
+    reviewsDescription:
+      "Залиште чесний відгук на сторінці розширення Mozilla — це допомагає іншим розробникам і дизайнерам знайти інструмент.",
+    leaveReview: "Залишити відгук на Firefox",
+    reportBugTag: "БАГ-РЕПОРТ",
+    reportBugTitle: "Знайшли помилку?",
+    reportBugDesc:
+      "Якщо якийсь сайт некоректно експортує SVG або інтерфейс поводиться дивно — опишіть випадок у короткій формі.",
+    reportBugButton: "Повідомити про помилку",
+    suggestChangeTag: "ІДЕЯ",
+    suggestChangeTitle: "Маєте пропозицію?",
+    suggestChangeDesc:
+      "Поділіться ідеєю нового формату експорту, гарячих клавіш чи покращення UX — найкращі ідеї потрапляють у наступні релізи.",
+    suggestChangeButton: "Запропонувати покращення",
+
+    aboutKicker: "04 / ПРО АВТОРА",
+    aboutTitle: "Привіт, я Руслан",
+    aboutSubtitle: "Незалежний розробник із фокусом на практичні інструменти.",
+    aboutParagraph1:
+      "Я створюю легкі та сфокусовані утиліти, які вирішують конкретні щоденні задачі без зайвого візуального шуму та перевантажених інтерфейсів.",
+    aboutParagraph2:
+      "SVG Extractor Pro з’явився з простої потреби: швидко знаходити, переглядати й завантажувати чисті векторні іконки прямо зі сторінки без занурення в DevTools.",
+    aboutParagraph3:
+      "Якщо мої інструменти зекономили вам кілька хвилин або годин роботи — буду щиро вдячний за каву, зірочку чи відгук.",
+    specProjectLabel: "ПРОЄКТ",
+    specProjectValue: "SVG Extractor Pro",
+    specPlatformLabel: "ПЛАТФОРМА",
+    specPlatformValue: "Firefox Add-on (WebExtensions)",
+    specModelLabel: "МОДЕЛЬ",
+    specModelValue: "Безкоштовно, без реклами",
+    specAuthorLabel: "АВТОР",
+    specAuthorValue: "@ruslanlap",
+    specJarLabel: "МОНОБАНКА",
+    githubProfileBtn: "GitHub @ruslanlap",
+    firefoxAddonBtn: "Сторінка Add-on",
+
+    footerDescription:
+      "Зроблено незалежно для дизайнерів і розробників. Дякую кожному, хто підтримує проєкт.",
+    footerRights: "Руслан Лаптєв",
+    footerSupportLink: "Підтримати",
+    footerFeedbackLink: "Зворотний зв’язок",
   },
   en: {
-    // General elements
-    logoAlt: "Website Logo",
-    heroTitle: "Support My Work!",
+    logoAlt: "SVG Extractor Pro logo",
+    navSupport: "Support",
+    navImpact: "Impact",
+    navCommunity: "Feedback",
+    navAbout: "Maker",
+    headerSupportBtn: "Buy a coffee",
+
+    heroBadge: "Independent Open-Source Tooling",
+    heroTitle: "Support the craft behind",
+    heroTitleMuted: "SVG Extractor Pro & indie dev utilities.",
     heroSubtitle:
-      "Your contribution ignites creativity and transforms bold ideas into reality. Every donation catalyzes revolutionary projects!",
-    heroButton: "Join the Movement",
-    scrollDown: "Scroll down",
-    withLove: "With love for you 💜",
+      "A focused browser extension built with zero ads, zero tracking, and zero paywalls. If it saves you time in your daily workflow, consider fueling future updates.",
+    heroPrimaryCta: "Support via Monobank",
+    heroSecondaryCta: "Get Firefox Add-on",
+    heroStat1: "Zero trackers",
+    heroStat2: "Free forever",
+    heroStat3: "Actively maintained",
+    specimenLabel: "VECTOR SPECIMEN",
+    specimenStatus: "EXPORT READY",
 
-    // Why Support section
-    whySupportTitle: "The Impact of Your Support",
-    whySupportSubtitle:
-      "Watch how your generosity transforms into tangible innovations and groundbreaking content.",
-    reasonProjectDevelopment: "Boundless Growth",
-    reasonProjectDevelopmentDesc:
-      "Your backing enables experimentation with cutting-edge technologies and implementation of ambitious visions that redefine possibilities.",
-    reasonContentCreation: "Creative Freedom",
-    reasonContentCreationDesc:
-      "Each contribution liberates time for crafting exceptional content that educates, entertains, and expands horizons.",
-    reasonCreativitySupport: "Momentum for Innovation",
-    reasonCreativitySupportDesc:
-      "Your trust fuels our passion to break barriers, explore uncharted territories, and share transformative knowledge.",
-
-    // Support My Work section
-    donationOptionsTitle: "Pathways to Partnership",
-    donationOptionsSubtitle:
-      "Choose your preferred method to join our mission – from lightning-fast transfers to global support!",
-    monobankTitle: "Swift Monobank",
+    donateKicker: "01 / SUPPORT",
+    donateTitle: "Direct support, no middlemen",
+    donateSubtitle:
+      "Contribute in seconds via Monobank Jar (Apple Pay, Google Pay, or any card), copy the direct card number, or scan the QR code.",
+    monoBadge: "MONOBANK JAR",
+    monobankTitle: "Contribute to the Monobank Jar",
     monobankDesc:
-      "Experience the seamless way to contribute – minimal clicks, maximum impact on our shared vision.",
-    supportViaMonobank: "Contribute via Mono",
-
-    // About Me section
-    aboutTitle: "The Creator's Journey",
-    aboutSubtitle: "Vision and Philosophy",
-    aboutParagraph1:
-      "I blend technical expertise with creative artistry to craft projects that not only entertain but address real-world challenges.",
-    aboutParagraph2:
-      "My mission is transforming concepts into vibrant projects that serve communities. Each contribution ignites the creative flame and unlocks new possibilities.",
-    aboutParagraph3:
-      "Your support allows me to concentrate on what truly matters: innovation, quality, and community building. Together, we're not just creating products – we're shaping culture!",
-
-    // Footer
-    footerThankYou: "Eternally grateful for your support!",
-    footerDescription:
-      "Your contributions power the engine of innovation and fuel our commitment to excellence.",
-    footerRights: "All rights protected",
-    footerCreatedWith: "Crafted with inspiration",
-
-    // Feedback section
-    feedbackTitle: "Feedback",
-    feedbackSubtitle: "Report any issues or suggestions for improvements",
-    reportBugTitle: "Spotted an Issue?",
-    reportBugDesc:
-      "Your keen eye helps us evolve – tell us about technical glitches you've encountered along the way.",
-    suggestChangeTitle: "Envision Improvements?",
-    suggestChangeDesc:
-      "Your fresh perspectives and innovative suggestions are invaluable resources for our growth!",
-    reportBugButton: "Highlight a Bug",
-    suggestChangeButton: "Share Your Vision",
-
-    // Reviews
-    reviewsTitle: "Community Voices",
-    reviewsDescription:
-      "Every review guides our journey like a compass pointing toward excellence!",
-    leaveReview: "Share Your Experience",
-    scanToDonate: "Scan to Empower",
+      "Works with Apple Pay, Google Pay, and international cards. Every contribution goes straight toward maintenance hours, browser compatibility, and new features.",
+    supportViaMonobank: "Open Monobank Jar",
+    tier1: "☕ Espresso",
+    tier2: "⚡ Feature fuel",
+    tier3: "🛠 Release sponsor",
+    cardLabel: "DIRECT CARD NUMBER",
+    copyBtn: "Copy",
+    copiedBtn: "Copied",
+    copiedToast: "Card number copied to clipboard",
+    copyErrorToast: "Could not copy card number",
+    scanToDonate: "Scan QR to open Jar",
     qrCodeDescription:
-      "One QR code opens the gateway to supporting our vision – as simple as enjoying your coffee!",
+      "Point your phone camera at the code or tap it to jump straight to the Monobank Jar.",
+    openJarLink: "Open direct link",
 
-    // Footer
-    footerBy: "by ruslanlap",
+    whyKicker: "02 / WHERE IT GOES",
+    whySupportTitle: "What your contribution funds",
+    whySupportSubtitle:
+      "Keeping lightweight developer tools fast, privacy-respecting, and dependable takes ongoing care.",
+    reason1Tag: "MAINTENANCE",
+    reasonProjectDevelopment: "Browser updates & fixes",
+    reasonProjectDevelopmentDesc:
+      "Keeping pace with Firefox releases, handling complex nested SVG DOM edge cases, and sharpening extraction speed.",
+    reason2Tag: "PRIVACY",
+    reasonContentCreation: "Ad-free & tracker-free",
+    reasonContentCreationDesc:
+      "Reader and user support keeps the extension clean—no sponsored banners, no analytics beacons, and no locked core features.",
+    reason3Tag: "ROADMAP",
+    reasonCreativitySupport: "New formats & utilities",
+    reasonCreativitySupportDesc:
+      "Building community-requested improvements like cleaner batch exports, SVG optimization presets, and companion micro-tools.",
+
+    communityKicker: "03 / COMMUNITY & FEEDBACK",
+    communityTitle: "Help shape what ships next",
+    communitySubtitle:
+      "A quick review on Mozilla Add-ons or a reproducible bug note is just as valuable as a donation.",
+    reviewsBadge: "FIREFOX ADD-ONS",
+    reviewsTitle: "Using SVG Extractor Pro in your workflow?",
+    reviewsDescription:
+      "Leave an honest rating on the Firefox Add-ons listing—it helps fellow designers and frontend engineers discover the tool.",
+    leaveReview: "Review on Firefox Add-ons",
+    reportBugTag: "ISSUE TRACKER",
+    reportBugTitle: "Spotted a bug?",
+    reportBugDesc:
+      "Found a site where an inline SVG fails to extract or preview properly? Send over a quick report so it gets fixed.",
+    reportBugButton: "Report an issue",
+    suggestChangeTag: "FEATURE REQUEST",
+    suggestChangeTitle: "Have a feature idea?",
+    suggestChangeDesc:
+      "Share ideas for export options, keyboard shortcuts, or UI polish—community requests drive the release queue.",
+    suggestChangeButton: "Suggest an improvement",
+
+    aboutKicker: "04 / MAKER",
+    aboutTitle: "Hi, I'm Ruslan",
+    aboutSubtitle: "Independent engineer crafting quiet, practical web tools.",
+    aboutParagraph1:
+      "I build lightweight developer utilities designed to solve one job cleanly without bloated dashboards or visual clutter.",
+    aboutParagraph2:
+      "SVG Extractor Pro started from a straightforward itch: inspecting, previewing, and grabbing clean vector assets from any webpage without digging through DevTools.",
+    aboutParagraph3:
+      "If my work has saved you time on a sprint or side project, thank you for considering a coffee or leaving a note.",
+    specProjectLabel: "PROJECT",
+    specProjectValue: "SVG Extractor Pro",
+    specPlatformLabel: "PLATFORM",
+    specPlatformValue: "Firefox Add-on (WebExtensions)",
+    specModelLabel: "MODEL",
+    specModelValue: "Free & Ad-Free",
+    specAuthorLabel: "AUTHOR",
+    specAuthorValue: "@ruslanlap",
+    specJarLabel: "MONOBANK",
+    githubProfileBtn: "GitHub @ruslanlap",
+    firefoxAddonBtn: "Firefox Listing",
+
+    footerDescription:
+      "Built independently for designers and frontend engineers. Thank you for supporting open tooling.",
+    footerRights: "Ruslan Laptev",
+    footerSupportLink: "Support",
+    footerFeedbackLink: "Feedback",
   },
 };
 
-// Інтерфейс мовного контексту
 interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
   t: (key: TranslationKey) => string;
 }
 
-// Створення контексту
 const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
-// Компонент-провайдер для мовного контексту
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("en");
+const STORAGE_KEY = "ruslanlap_lang";
 
-  // Функція для отримання перекладу за ключем
+function getInitialLanguage(): Language {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "uk" || saved === "en") return saved;
+    if (
+      typeof navigator !== "undefined" &&
+      navigator.language?.toLowerCase().startsWith("uk")
+    ) {
+      return "uk";
+    }
+  } catch {
+    // Ignore storage access errors in restricted contexts
+  }
+  return "en";
+}
+
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
+
+  const setLanguage = (nextLang: Language) => {
+    setLanguageState(nextLang);
+    try {
+      localStorage.setItem(STORAGE_KEY, nextLang);
+    } catch {
+      // Ignore storage errors
+    }
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   const t = (key: TranslationKey): string => {
     return translations[language][key] || key;
   };
@@ -228,7 +359,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Кастомний хук для використання мовного контексту
 export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
   if (!context) {

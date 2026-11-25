@@ -1,64 +1,115 @@
-import { useEffect, useRef } from "react";
-import GlassmorphicCard from "./GlassmorphicCard";
+import { ArrowUpRight, Github } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const GITHUB_URL = "https://github.com/ruslanlap";
+const FIREFOX_ADDON_URL =
+  "https://addons.mozilla.org/en-US/firefox/addon/svg-extractor-pro/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search";
+const MONOBANK_JAR_URL = "https://send.monobank.ua/jar/ARJZzebAyX";
+
 const AboutSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const reveals = sectionRef.current?.querySelectorAll(".reveal");
-    reveals?.forEach((reveal) => observer.observe(reveal));
-
-    return () => {
-      reveals?.forEach((reveal) => observer.unobserve(reveal));
-    };
-  }, []);
+  const specs = [
+    { label: t("specProjectLabel"), value: t("specProjectValue") },
+    { label: t("specPlatformLabel"), value: t("specPlatformValue") },
+    { label: t("specModelLabel"), value: t("specModelValue") },
+    { label: t("specAuthorLabel"), value: t("specAuthorValue") },
+  ];
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="inline-block text-purple-400 font-medium tracking-wide px-3 py-1 bg-purple-500/10 rounded-full mb-4 reveal">
-            {t("aboutSubtitle")}
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 reveal">
-            {t("aboutTitle")}{" "}
-            <span className="text-gradient">{t("aboutSubtitle")}</span>
-          </h2>
-        </div>
+    <section
+      id="about"
+      className="py-16 sm:py-24 border-t border-border/70"
+    >
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="lg:col-span-7 space-y-5">
+            <div className="space-y-2">
+              <p className="font-mono text-xs tracking-wider text-primary uppercase">
+                {t("aboutKicker")}
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
+                {t("aboutTitle")}
+              </h2>
+              <p className="text-base text-muted-foreground font-medium">
+                {t("aboutSubtitle")}
+              </p>
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="order-2 md:order-1 reveal reveal-delay-1">
-            <div className="space-y-6">
-              <p className="text-lg">{t("aboutParagraph1")}</p>
-              <p className="text-muted-foreground">{t("aboutParagraph2")}</p>
-              <p className="text-muted-foreground">{t("aboutParagraph3")}</p>
+            <div className="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
+              <p className="text-foreground/90">{t("aboutParagraph1")}</p>
+              <p>{t("aboutParagraph2")}</p>
+              <p>{t("aboutParagraph3")}</p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-border bg-card hover:bg-muted text-foreground text-sm font-medium transition-colors"
+              >
+                <Github className="w-4 h-4" />
+                <span>{t("githubProfileBtn")}</span>
+              </a>
+
+              <a
+                href={FIREFOX_ADDON_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-border bg-card hover:bg-muted text-foreground text-sm font-medium transition-colors"
+              >
+                <span>{t("firefoxAddonBtn")}</span>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground" />
+              </a>
             </div>
           </div>
 
-          <div className="order-1 md:order-2 reveal reveal-delay-2">
-            <GlassmorphicCard className="p-3 overflow-hidden">
-              <div className="rounded-lg overflow-hidden aspect-[4/3] relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent z-10"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?q=80&w=1000&auto=format&fit=crop"
-                  alt="Творець проєкту"
-                  className="w-full h-full object-cover"
-                />
+          {/* Maker & Project Spec Sheet */}
+          <div className="lg:col-span-5">
+            <div className="relative rounded-2xl border border-border bg-card overflow-visible">
+              <span aria-hidden="true" className="anchor-node absolute -top-1 -left-1" />
+              <span aria-hidden="true" className="anchor-node absolute -top-1 -right-1" />
+              <span aria-hidden="true" className="anchor-node absolute -bottom-1 -left-1" />
+              <span aria-hidden="true" className="anchor-node absolute -bottom-1 -right-1" />
+
+              <div className="px-5 py-3 border-b border-border bg-muted/40 rounded-t-2xl font-mono text-[11px] text-muted-foreground flex items-center justify-between">
+                <span>PROJECT DOSSIER</span>
+                <span>v2.0</span>
               </div>
-            </GlassmorphicCard>
+
+              <dl className="divide-y divide-border font-mono text-xs">
+                {specs.map((row) => (
+                  <div
+                    key={row.label}
+                    className="px-5 py-3.5 flex items-center justify-between gap-4"
+                  >
+                    <dt className="text-muted-foreground shrink-0">
+                      {row.label}
+                    </dt>
+                    <dd className="text-foreground text-right truncate">
+                      {row.value}
+                    </dd>
+                  </div>
+                ))}
+                <div className="px-5 py-3.5 flex items-center justify-between gap-4">
+                  <dt className="text-muted-foreground shrink-0">
+                    {t("specJarLabel")}
+                  </dt>
+                  <dd className="text-right truncate">
+                    <a
+                      href={MONOBANK_JAR_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>send.monobank.ua</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
       </div>
